@@ -57,6 +57,7 @@ namespace OICAR19_API.Controllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
+        [NonAction]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -159,6 +160,7 @@ namespace OICAR19_API.Controllers
         }
 
         // POST api/Account/AddExternalLogin
+        [NonAction]
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
@@ -197,6 +199,7 @@ namespace OICAR19_API.Controllers
         }
 
         // POST api/Account/RemoveLogin
+        [NonAction]
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
@@ -226,6 +229,7 @@ namespace OICAR19_API.Controllers
         }
 
         // GET api/Account/ExternalLogin
+        [NonAction]
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
@@ -283,6 +287,7 @@ namespace OICAR19_API.Controllers
         }
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
+        [NonAction]
         [AllowAnonymous]
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
@@ -420,6 +425,7 @@ namespace OICAR19_API.Controllers
         }
 
         // POST api/Account/RegisterExternal
+        [NonAction]
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("RegisterExternal")]

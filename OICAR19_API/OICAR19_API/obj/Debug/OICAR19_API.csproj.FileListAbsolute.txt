@@ -35,12 +35,6 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\roslyn\VBCSCo
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Antlr3.Runtime.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\EntityFramework.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\EntityFramework.SqlServer.dll
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.dll
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.Mvc.dll
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.PlatformServices.dll
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Core.dll
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.dll
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.PlatformServices.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -77,14 +71,6 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\WebActivatorE
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\WebGrease.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\EntityFramework.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\EntityFramework.SqlServer.xml
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.pdb
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.xml
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.pdb
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.xml
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.Mvc.pdb
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Auth.Mvc.xml
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Core.pdb
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Core.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.JsonWebTokens.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.Logging.xml
