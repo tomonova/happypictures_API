@@ -59,10 +59,23 @@ namespace OICAR19_API
             //    appId: "",
             //    appSecret: "");
 
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "720095607724-9e62fvctdcie06hr54t7vpnldhq637f2.apps.googleusercontent.com",
+            //    ClientSecret = "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"
+            //});
+
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "1048426853273-56kfbd02pt77phh8kf7isj5oj6c1brjl.apps.googleusercontent.com",
+            //    ClientSecret = "4KKEMpfPDtqn-lUaJlop-Ahu",
+            //    CallbackPath = new PathString("/")
+            //});
+
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "1048426853273-56kfbd02pt77phh8kf7isj5oj6c1brjl.apps.googleusercontent.com",
-                ClientSecret = "4KKEMpfPDtqn-lUaJlop-Ahu"
+                ClientId = "720095607724-rd2fcmffbtjagmrucdmu42ie2v2bj94e.apps.googleusercontent.com",
+                ClientSecret = "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"
             });
         }
     }

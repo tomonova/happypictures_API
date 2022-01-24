@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HappyPicturesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CARDS">
+    <Key>
+      <PropertyRef Name="IDCARD" />
+    </Key>
+    <Property Name="IDCARD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="250" />
+    <Property Name="SAHRED" Type="int" Nullable="false" />
+    <Property Name="DELETED" Type="int" Nullable="false" />
+    <Property Name="PROFILEID" Type="int" Nullable="false" />
+    <Property Name="FORMATID" Type="int" />
+    <Property Name="TAGID" Type="int" />
+  </EntityType>
+  <EntityType Name="FORMATS">
+    <Key>
+      <PropertyRef Name="IDFORMAT" />
+    </Key>
+    <Property Name="IDFORMAT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COLOR" Type="nvarchar" MaxLength="50" />
+    <Property Name="FONT_SIZE" Type="int" />
+    <Property Name="FONT_FORMAT" Type="int" />
+    <Property Name="LAYOUT" Type="int" />
+    <Property Name="IMG1ID" Type="int" />
+    <Property Name="IMG2ID" Type="int" />
+    <Property Name="IMG3ID" Type="int" />
+  </EntityType>
+  <EntityType Name="IMAGE_STORY">
+    <Key>
+      <PropertyRef Name="IDIMAGE_STORY" />
+    </Key>
+    <Property Name="IDIMAGE_STORY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IMAGEID" Type="int" />
+    <Property Name="STORYID" Type="int" />
+  </EntityType>
+  <EntityType Name="IMAGES">
+    <Key>
+      <PropertyRef Name="IDIMAGE" />
+    </Key>
+    <Property Name="IDIMAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="URL" Type="nvarchar(max)" />
+    <Property Name="NAME" Type="nvarchar(max)" />
+    <Property Name="PROFILEID" Type="int" Nullable="false" />
+    <Property Name="SHARED" Type="int" Nullable="false" />
+    <Property Name="DELETED" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROFILES">
+    <Key>
+      <PropertyRef Name="IDPROFILE" />
+    </Key>
+    <Property Name="IDPROFILE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="nvarchar" MaxLength="250" />
+    <Property Name="LASTNAME" Type="nvarchar" MaxLength="250" />
+    <Property Name="NICKNAME" Type="nvarchar" MaxLength="250" />
+    <Property Name="BIO" Type="nvarchar(max)" />
+    <Property Name="DELETED" Type="int" Nullable="false" />
+    <Property Name="USERID" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SCHEDULE_IMAGE">
+    <Key>
+      <PropertyRef Name="IDSCHECULDE_IMAGE" />
+    </Key>
+    <Property Name="IDSCHECULDE_IMAGE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POSITION" Type="int" Nullable="false" />
+    <Property Name="SCHEDULEID" Type="int" Nullable="false" />
+    <Property Name="IMAGEID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SCHEDULES">
+    <Key>
+      <PropertyRef Name="IDSCHEDULE" />
+    </Key>
+    <Property Name="IDSCHEDULE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SCHEDULE_DATE" Type="date" Nullable="false" />
+    <Property Name="PROFILEID" Type="int" />
+  </EntityType>
+  <EntityType Name="STORIES">
+    <Key>
+      <PropertyRef Name="IDSTORY" />
+    </Key>
+    <Property Name="IDSTORY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="250" />
+    <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+    <Property Name="THUMBNAIL" Type="int" />
+    <Property Name="FAVOURITE" Type="int" Nullable="false" />
+    <Property Name="SHARED" Type="int" Nullable="false" />
+    <Property Name="DELETED" Type="int" Nullable="false" />
+    <Property Name="PROFILEID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TAG_CARD">
+    <Key>
+      <PropertyRef Name="IDTAG_CARD" />
+    </Key>
+    <Property Name="IDTAG_CARD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TAGID" Type="int" Nullable="false" />
+    <Property Name="CARDID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TAG_STORY">
+    <Key>
+      <PropertyRef Name="IDTAG_STORY" />
+    </Key>
+    <Property Name="IDTAG_STORY" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TAGID" Type="int" Nullable="false" />
+    <Property Name="STORYID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TAGS">
+    <Key>
+      <PropertyRef Name="IDTAG" />
+    </Key>
+    <Property Name="IDTAG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VALUE" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TYPE" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FKCARD_TAG">
+    <End Role="CARDS" Type="Self.CARDS" Multiplicity="1" />
+    <End Role="TAG_CARD" Type="Self.TAG_CARD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARDS">
+        <PropertyRef Name="IDCARD" />
+      </Principal>
+      <Dependent Role="TAG_CARD">
+        <PropertyRef Name="CARDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKFORMATS_CARDS">
+    <End Role="FORMATS" Type="Self.FORMATS" Multiplicity="0..1" />
+    <End Role="CARDS" Type="Self.CARDS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMATS">
+        <PropertyRef Name="IDFORMAT" />
+      </Principal>
+      <Dependent Role="CARDS">
+        <PropertyRef Name="FORMATID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIMAGE_SCHEDULE">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="1" />
+    <End Role="SCHEDULE_IMAGE" Type="Self.SCHEDULE_IMAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="IDIMAGE" />
+      </Principal>
+      <Dependent Role="SCHEDULE_IMAGE">
+        <PropertyRef Name="IMAGEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIMAGE_STORY">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="IMAGE_STORY" Type="Self.IMAGE_STORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="IDIMAGE" />
+      </Principal>
+      <Dependent Role="IMAGE_STORY">
+        <PropertyRef Name="IMAGEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIMAGE1_FORMATS">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="FORMATS" Type="Self.FORMATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="IDIMAGE" />
+      </Principal>
+      <Dependent Role="FORMATS">
+        <PropertyRef Name="IMG1ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIMAGE2_FORMATS">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="FORMATS" Type="Self.FORMATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="IDIMAGE" />
+      </Principal>
+      <Dependent Role="FORMATS">
+        <PropertyRef Name="IMG2ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKIMAGE3_FORMATS">
+    <End Role="IMAGES" Type="Self.IMAGES" Multiplicity="0..1" />
+    <End Role="FORMATS" Type="Self.FORMATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMAGES">
+        <PropertyRef Name="IDIMAGE" />
+      </Principal>
+      <Dependent Role="FORMATS">
+        <PropertyRef Name="IMG3ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPROFILE_SCHEDULE">
+    <End Role="PROFILES" Type="Self.PROFILES" Multiplicity="0..1" />
+    <End Role="SCHEDULES" Type="Self.SCHEDULES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROFILES">
+        <PropertyRef Name="IDPROFILE" />
+      </Principal>
+      <Dependent Role="SCHEDULES">
+        <PropertyRef Name="PROFILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPROFILE_STORY">
+    <End Role="PROFILES" Type="Self.PROFILES" Multiplicity="1" />
+    <End Role="STORIES" Type="Self.STORIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROFILES">
+        <PropertyRef Name="IDPROFILE" />
+      </Principal>
+      <Dependent Role="STORIES">
+        <PropertyRef Name="PROFILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPROFILES_CARDS">
+    <End Role="PROFILES" Type="Self.PROFILES" Multiplicity="1" />
+    <End Role="CARDS" Type="Self.CARDS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROFILES">
+        <PropertyRef Name="IDPROFILE" />
+      </Principal>
+      <Dependent Role="CARDS">
+        <PropertyRef Name="PROFILEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKSCHEDULE_IMAGE">
+    <End Role="SCHEDULES" Type="Self.SCHEDULES" Multiplicity="1" />
+    <End Role="SCHEDULE_IMAGE" Type="Self.SCHEDULE_IMAGE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHEDULES">
+        <PropertyRef Name="IDSCHEDULE" />
+      </Principal>
+      <Dependent Role="SCHEDULE_IMAGE">
+        <PropertyRef Name="SCHEDULEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKSTORY_IMAGE">
+    <End Role="STORIES" Type="Self.STORIES" Multiplicity="0..1" />
+    <End Role="IMAGE_STORY" Type="Self.IMAGE_STORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORIES">
+        <PropertyRef Name="IDSTORY" />
+      </Principal>
+      <Dependent Role="IMAGE_STORY">
+        <PropertyRef Name="STORYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKSTORY_TAG">
+    <End Role="STORIES" Type="Self.STORIES" Multiplicity="1" />
+    <End Role="TAG_STORY" Type="Self.TAG_STORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STORIES">
+        <PropertyRef Name="IDSTORY" />
+      </Principal>
+      <Dependent Role="TAG_STORY">
+        <PropertyRef Name="STORYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKTAG_CARD">
+    <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+    <End Role="TAG_CARD" Type="Self.TAG_CARD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAGS">
+        <PropertyRef Name="IDTAG" />
+      </Principal>
+      <Dependent Role="TAG_CARD">
+        <PropertyRef Name="TAGID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKTAG_STORY">
+    <End Role="TAGS" Type="Self.TAGS" Multiplicity="1" />
+    <End Role="TAG_STORY" Type="Self.TAG_STORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAGS">
+        <PropertyRef Name="IDTAG" />
+      </Principal>
+      <Dependent Role="TAG_STORY">
+        <PropertyRef Name="TAGID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HappyPicturesModelStoreContainer">
+    <EntitySet Name="CARDS" EntityType="Self.CARDS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FORMATS" EntityType="Self.FORMATS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGE_STORY" EntityType="Self.IMAGE_STORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMAGES" EntityType="Self.IMAGES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROFILES" EntityType="Self.PROFILES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCHEDULE_IMAGE" EntityType="Self.SCHEDULE_IMAGE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCHEDULES" EntityType="Self.SCHEDULES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STORIES" EntityType="Self.STORIES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAG_CARD" EntityType="Self.TAG_CARD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAG_STORY" EntityType="Self.TAG_STORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAGS" EntityType="Self.TAGS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FKCARD_TAG" Association="Self.FKCARD_TAG">
+      <End Role="CARDS" EntitySet="CARDS" />
+      <End Role="TAG_CARD" EntitySet="TAG_CARD" />
+    </AssociationSet>
+    <AssociationSet Name="FKFORMATS_CARDS" Association="Self.FKFORMATS_CARDS">
+      <End Role="FORMATS" EntitySet="FORMATS" />
+      <End Role="CARDS" EntitySet="CARDS" />
+    </AssociationSet>
+    <AssociationSet Name="FKIMAGE_SCHEDULE" Association="Self.FKIMAGE_SCHEDULE">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="SCHEDULE_IMAGE" EntitySet="SCHEDULE_IMAGE" />
+    </AssociationSet>
+    <AssociationSet Name="FKIMAGE_STORY" Association="Self.FKIMAGE_STORY">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="IMAGE_STORY" EntitySet="IMAGE_STORY" />
+    </AssociationSet>
+    <AssociationSet Name="FKIMAGE1_FORMATS" Association="Self.FKIMAGE1_FORMATS">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="FORMATS" EntitySet="FORMATS" />
+    </AssociationSet>
+    <AssociationSet Name="FKIMAGE2_FORMATS" Association="Self.FKIMAGE2_FORMATS">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="FORMATS" EntitySet="FORMATS" />
+    </AssociationSet>
+    <AssociationSet Name="FKIMAGE3_FORMATS" Association="Self.FKIMAGE3_FORMATS">
+      <End Role="IMAGES" EntitySet="IMAGES" />
+      <End Role="FORMATS" EntitySet="FORMATS" />
+    </AssociationSet>
+    <AssociationSet Name="FKPROFILE_SCHEDULE" Association="Self.FKPROFILE_SCHEDULE">
+      <End Role="PROFILES" EntitySet="PROFILES" />
+      <End Role="SCHEDULES" EntitySet="SCHEDULES" />
+    </AssociationSet>
+    <AssociationSet Name="FKPROFILE_STORY" Association="Self.FKPROFILE_STORY">
+      <End Role="PROFILES" EntitySet="PROFILES" />
+      <End Role="STORIES" EntitySet="STORIES" />
+    </AssociationSet>
+    <AssociationSet Name="FKPROFILES_CARDS" Association="Self.FKPROFILES_CARDS">
+      <End Role="PROFILES" EntitySet="PROFILES" />
+      <End Role="CARDS" EntitySet="CARDS" />
+    </AssociationSet>
+    <AssociationSet Name="FKSCHEDULE_IMAGE" Association="Self.FKSCHEDULE_IMAGE">
+      <End Role="SCHEDULES" EntitySet="SCHEDULES" />
+      <End Role="SCHEDULE_IMAGE" EntitySet="SCHEDULE_IMAGE" />
+    </AssociationSet>
+    <AssociationSet Name="FKSTORY_IMAGE" Association="Self.FKSTORY_IMAGE">
+      <End Role="STORIES" EntitySet="STORIES" />
+      <End Role="IMAGE_STORY" EntitySet="IMAGE_STORY" />
+    </AssociationSet>
+    <AssociationSet Name="FKSTORY_TAG" Association="Self.FKSTORY_TAG">
+      <End Role="STORIES" EntitySet="STORIES" />
+      <End Role="TAG_STORY" EntitySet="TAG_STORY" />
+    </AssociationSet>
+    <AssociationSet Name="FKTAG_CARD" Association="Self.FKTAG_CARD">
+      <End Role="TAGS" EntitySet="TAGS" />
+      <End Role="TAG_CARD" EntitySet="TAG_CARD" />
+    </AssociationSet>
+    <AssociationSet Name="FKTAG_STORY" Association="Self.FKTAG_STORY">
+      <End Role="TAGS" EntitySet="TAGS" />
+      <End Role="TAG_STORY" EntitySet="TAG_STORY" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

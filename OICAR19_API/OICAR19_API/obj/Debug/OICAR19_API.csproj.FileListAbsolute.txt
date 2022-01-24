@@ -1,4 +1,5 @@
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.dll.config
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.pdb
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\roslyn\csc.exe
@@ -44,6 +45,9 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Asp
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.Owin.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.Tokens.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.Security.dll
@@ -56,6 +60,8 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Web
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Newtonsoft.Json.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Owin.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Swashbuckle.Core.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.ComponentModel.Annotations.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Net.Http.Formatting.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Web.Helpers.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Web.Http.dll
@@ -80,6 +86,9 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.A
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Core.pdb
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Google.Apis.Core.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.IdentityModel.Tokens.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.Security.xml
@@ -89,6 +98,7 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owi
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Newtonsoft.Json.xml
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.IdentityModel.Tokens.Jwt.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Net.Http.Formatting.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Web.Helpers.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Web.Http.xml

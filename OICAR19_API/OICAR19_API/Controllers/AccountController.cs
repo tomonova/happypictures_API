@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,6 +18,9 @@ using Microsoft.Owin.Security.OAuth;
 using OICAR19_API.Models;
 using OICAR19_API.Providers;
 using OICAR19_API.Results;
+using System.Data.Entity;
+using System.Linq;
+using System.Data.SqlClient;
 
 namespace OICAR19_API.Controllers
 {
@@ -318,6 +323,56 @@ namespace OICAR19_API.Controllers
             return logins;
         }
 
+        [HttpPut]
+        [Route("UpdateProfile")]
+        [ResponseType(typeof(PROFILE))]
+        public IHttpActionResult CreateProfile(PROFILE entryProfile)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                   PROFILE profile = db.PROFILES.Where(p=>p.IDPROFILE== entryProfile.IDPROFILE).FirstOrDefault();
+                    profile.FIRSTNAME = entryProfile.FIRSTNAME;
+                    profile.LASTNAME = entryProfile.LASTNAME;
+                    profile.BIO = entryProfile.BIO;
+                    profile.NICKNAME = entryProfile.NICKNAME;
+                    db.Entry(profile).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return Ok(); ;
+            }
+        }
+        [HttpGet]
+        [Route("GetProfile")]
+        [ResponseType(typeof(PROFILE))]
+        public IHttpActionResult GetProfile()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    return Ok(db.PROFILES.SqlQuery("exec GetUser @param1", new SqlParameter("param1", User.Identity.Name)).ToList());
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+        }
+
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
@@ -336,20 +391,40 @@ namespace OICAR19_API.Controllers
             {
                 return GetErrorResult(result);
             }
-
-            return Ok();
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    SqlParameter inParm = new SqlParameter("@email", model.Email);
+                    SqlParameter outParm = new SqlParameter()
+                    {
+                        ParameterName = "@userid",
+                        SqlDbType = System.Data.SqlDbType.NVarChar,
+                        Size=100,
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                     db.Database.ExecuteSqlCommand("exec  ReturnUserID @email, @userid OUT", inParm,outParm);
+                    string userId = outParm.Value.ToString();
+                    db.PROFILES.Add(new PROFILE
+                    {
+                        USERID = userId
+                    });
+                    db.SaveChanges();
+                    return Ok(db.PROFILES.Where(p => p.USERID == userId).ToList());
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
         }
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        public async Task<IHttpActionResult> RegisterExternal()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             var info = await Authentication.GetExternalLoginInfoAsync();
             if (info == null)
@@ -357,7 +432,7 @@ namespace OICAR19_API.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = info.Email, Email = info.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)

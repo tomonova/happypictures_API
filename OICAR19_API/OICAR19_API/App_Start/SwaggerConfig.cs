@@ -3,6 +3,7 @@ using WebActivatorEx;
 using OICAR19_API;
 using Swashbuckle.Application;
 using OICAR19_API.App_Start;
+using System;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -104,7 +105,7 @@ namespace OICAR19_API
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        c.IncludeXmlComments(AppDomain.CurrentDomain.BaseDirectory + "bin\\OICAR19_API.xml");
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -185,7 +186,7 @@ namespace OICAR19_API
                         // Use the "DocumentTitle" option to change the Document title.
                         // Very helpful when you have multiple Swagger pages open, to tell them apart.
                         //
-                        c.DocumentTitle("OICAR19_API");
+                        c.DocumentTitle("HAPPY_PICTURES_API");
 
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
