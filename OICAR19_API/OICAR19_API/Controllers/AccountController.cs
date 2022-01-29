@@ -346,6 +346,7 @@ namespace OICAR19_API.Controllers
                     profile.LASTNAME = entryProfile.LASTNAME;
                     profile.BIO = entryProfile.BIO;
                     profile.NICKNAME = entryProfile.NICKNAME;
+                    profile.EMAIL = User.Identity.Name;
                     db.Entry(profile).State = EntityState.Modified;
                     db.SaveChanges();
                 }

@@ -124,7 +124,7 @@ namespace OICAR19_API.Controllers
         [HttpPost]
         [Route("api/Story/InsertStory")]
         [ResponseType(typeof(STORy))]
-        public IHttpActionResult InsertStory(STORy story)
+        public IHttpActionResult InsertStory(int userID,STORy story)
         {
             if (!ModelState.IsValid)
             {
@@ -137,6 +137,8 @@ namespace OICAR19_API.Controllers
                     if (db.IMAGES.Find(story.IMAGE.IDIMAGE) != null)
                     {
                         story.THUMBNAIL = story.IMAGE.IDIMAGE;
+                        story.FAVOURITE = 0;
+                        story.PROFILEID = userID;
                         story.IMAGE = null;
                     }
                     db.STORIES.Add(story);
@@ -149,6 +151,47 @@ namespace OICAR19_API.Controllers
                 return Content(HttpStatusCode.Created, new { IDSTORY = story.IDSTORY });
             }
         }
+        /// <summary>
+        /// This endpoint serves as "like" status change for a story
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="storyID"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/Story/LikeStory")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult LikeStory(int userID, int storyID, bool status)
+        {
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    if (!StoryExists(storyID))
+                    {
+                        return Content(HttpStatusCode.BadRequest, "Story doesn't exist");
+                    }
+                    if (status==false && db.LIKES.Any(l=>l.PROFILEID==userID&& l.STORYID==storyID))
+                    {
+                        db.LIKES.Remove(db.LIKES.Single(l =>l.PROFILEID==userID&&l.STORYID==storyID));
+                        db.SaveChanges();
+                        return Ok();
+                    }
+                    if (status==true)
+                    {
+                        db.LIKES.Add(new LIKE { PROFILEID = userID, STORYID = storyID });
+                        db.SaveChanges();
+                        return Ok();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return BadRequest();
+            }
+        }
 
         /// <summary>
         /// This interface must receive story ID and the story, it will perform an update of the story. If story does not exist it will not be inserted
@@ -156,16 +199,15 @@ namespace OICAR19_API.Controllers
         [HttpPut]
         [Route("api/Story/UpdateStory")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult UpdateImage(int idStory, STORy story)
+        public IHttpActionResult UpdateImage(int userID, STORy story)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (idStory != story.IDSTORY)
-            {
-                return BadRequest("ID of story not correct");
-            }
+            if (!UsersStory(userID,story))
+                return Content(HttpStatusCode.BadRequest, "you can only change your stories");
+
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
             {
                 try
@@ -173,6 +215,7 @@ namespace OICAR19_API.Controllers
                     if (db.IMAGES.Find(story.IMAGE.IDIMAGE) != null)
                     {
                         story.THUMBNAIL = story.IMAGE.IDIMAGE;
+                        story.FAVOURITE = 0;
                         story.IMAGE = null;
                     }
                     db.Entry(story).State = EntityState.Modified; ;
@@ -180,7 +223,7 @@ namespace OICAR19_API.Controllers
                 }
                 catch (Exception ex)
                 {
-                    if (!StoryExists(idStory))
+                    if (!StoryExists(story.IDSTORY))
                     {
                         return NotFound();
                     }
@@ -189,11 +232,41 @@ namespace OICAR19_API.Controllers
                 return StatusCode(HttpStatusCode.NoContent);
             }
         }
+
+        private bool UsersStory(int userID, STORy story)
+        {
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    STORy checkStory = db.STORIES
+                        .Where(s => s.IDSTORY == story.IDSTORY)
+                        .FirstOrDefault<STORy>();
+                    if (checkStory.PROFILEID==userID)
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return false;
+            }
+        }
+
         private bool StoryExists(int idStory)
         {
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
             {
-                return db.STORIES.Count(s => s.IDSTORY == idStory) > 0;
+                try
+                {
+                    return db.STORIES.Count(s => s.IDSTORY == idStory) > 0;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
         }
     }

@@ -11,10 +11,12 @@ namespace OICAR19_API.App_Start
     {
         public void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
         {
+
             swaggerDoc.paths.Add("/token", new PathItem
             {
                 post = new Operation
                 {
+                    summary="Endpoint issues security token, provide username and password",
                     tags = new List<string> { "Auth" },
                     consumes = new List<string>
                     {
@@ -25,6 +27,7 @@ namespace OICAR19_API.App_Start
                         new Parameter
                         {
                             type="string",
+
                             name="grant_type",
                             required = true,
                             @in="formData",

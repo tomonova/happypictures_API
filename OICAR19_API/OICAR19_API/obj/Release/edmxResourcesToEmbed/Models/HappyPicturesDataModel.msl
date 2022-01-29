@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HappyPicturesModelStoreContainer" CdmEntityContainer="HappyPicturesDbContext">
+    <EntitySetMapping Name="CARDS">
+      <EntityTypeMapping TypeName="HappyPicturesModel.CARD">
+        <MappingFragment StoreEntitySet="CARDS">
+          <ScalarProperty Name="IDCARD" ColumnName="IDCARD" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+          <ScalarProperty Name="SHARED" ColumnName="SHARED" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="PROFILEID" ColumnName="PROFILEID" />
+          <ScalarProperty Name="FORMATID" ColumnName="FORMATID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORMATS">
+      <EntityTypeMapping TypeName="HappyPicturesModel.FORMAT">
+        <MappingFragment StoreEntitySet="FORMATS">
+          <ScalarProperty Name="IDFORMAT" ColumnName="IDFORMAT" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="FONT_SIZE" ColumnName="FONT_SIZE" />
+          <ScalarProperty Name="FONT_FORMAT" ColumnName="FONT_FORMAT" />
+          <ScalarProperty Name="LAYOUT" ColumnName="LAYOUT" />
+          <ScalarProperty Name="IMG1ID" ColumnName="IMG1ID" />
+          <ScalarProperty Name="IMG2ID" ColumnName="IMG2ID" />
+          <ScalarProperty Name="IMG3ID" ColumnName="IMG3ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMAGES">
+      <EntityTypeMapping TypeName="HappyPicturesModel.IMAGE">
+        <MappingFragment StoreEntitySet="IMAGES">
+          <ScalarProperty Name="IDIMAGE" ColumnName="IDIMAGE" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="IMGTIMESTAMP" ColumnName="IMGTIMESTAMP" />
+          <ScalarProperty Name="PROFILEID" ColumnName="PROFILEID" />
+          <ScalarProperty Name="SHARED" ColumnName="SHARED" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LIKES">
+      <EntityTypeMapping TypeName="HappyPicturesModel.LIKE">
+        <MappingFragment StoreEntitySet="LIKES">
+          <ScalarProperty Name="IDLIKE" ColumnName="IDLIKE" />
+          <ScalarProperty Name="PROFILEID" ColumnName="PROFILEID" />
+          <ScalarProperty Name="STORYID" ColumnName="STORYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROFILES">
+      <EntityTypeMapping TypeName="HappyPicturesModel.PROFILE">
+        <MappingFragment StoreEntitySet="PROFILES">
+          <ScalarProperty Name="IDPROFILE" ColumnName="IDPROFILE" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+          <ScalarProperty Name="BIO" ColumnName="BIO" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHEDULE_IMAGE">
+      <EntityTypeMapping TypeName="HappyPicturesModel.SCHEDULE_IMAGE">
+        <MappingFragment StoreEntitySet="SCHEDULE_IMAGE">
+          <ScalarProperty Name="IDSCHEDULE_IMAGE" ColumnName="IDSCHEDULE_IMAGE" />
+          <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+          <ScalarProperty Name="SCHEDULEID" ColumnName="SCHEDULEID" />
+          <ScalarProperty Name="IMAGEID" ColumnName="IMAGEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHEDULES">
+      <EntityTypeMapping TypeName="HappyPicturesModel.SCHEDULE">
+        <MappingFragment StoreEntitySet="SCHEDULES">
+          <ScalarProperty Name="IDSCHEDULE" ColumnName="IDSCHEDULE" />
+          <ScalarProperty Name="SCHEDULE_DATE" ColumnName="SCHEDULE_DATE" />
+          <ScalarProperty Name="PROFILEID" ColumnName="PROFILEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORIES">
+      <EntityTypeMapping TypeName="HappyPicturesModel.STORy">
+        <MappingFragment StoreEntitySet="STORIES">
+          <ScalarProperty Name="IDSTORY" ColumnName="IDSTORY" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="THUMBNAIL" ColumnName="THUMBNAIL" />
+          <ScalarProperty Name="SHARED" ColumnName="SHARED" />
+          <ScalarProperty Name="FAVOURITE" ColumnName="FAVOURITE" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="PROFILEID" ColumnName="PROFILEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STORY_CARD">
+      <EntityTypeMapping TypeName="HappyPicturesModel.STORY_CARD">
+        <MappingFragment StoreEntitySet="STORY_CARD">
+          <ScalarProperty Name="STORYID" ColumnName="STORYID" />
+          <ScalarProperty Name="CARDID" ColumnName="CARDID" />
+          <ScalarProperty Name="CARD_ORDER" ColumnName="CARD_ORDER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAGS">
+      <EntityTypeMapping TypeName="HappyPicturesModel.TAG">
+        <MappingFragment StoreEntitySet="TAGS">
+          <ScalarProperty Name="IDTAG" ColumnName="IDTAG" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TAG_CARD" TypeName="HappyPicturesModel.TAG_CARD" StoreEntitySet="TAG_CARD">
+      <EndProperty Name="CARDS">
+        <ScalarProperty Name="IDCARD" ColumnName="CARDID" />
+      </EndProperty>
+      <EndProperty Name="TAGS">
+        <ScalarProperty Name="IDTAG" ColumnName="TAGID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TAG_STORY" TypeName="HappyPicturesModel.TAG_STORY" StoreEntitySet="TAG_STORY">
+      <EndProperty Name="STORIES">
+        <ScalarProperty Name="IDSTORY" ColumnName="STORYID" />
+      </EndProperty>
+      <EndProperty Name="TAGS">
+        <ScalarProperty Name="IDTAG" ColumnName="TAGID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="CreateUserID" FunctionName="HappyPicturesModel.Store.CreateUserID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HappyPicturesModel.CreateUserID_Result">
+          <ScalarProperty Name="IDPROFILE" ColumnName="IDPROFILE" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+          <ScalarProperty Name="BIO" ColumnName="BIO" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAdminID" FunctionName="HappyPicturesModel.Store.GetAdminID" />
+    <FunctionImportMapping FunctionImportName="GetUser" FunctionName="HappyPicturesModel.Store.GetUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HappyPicturesModel.GetUser_Result">
+          <ScalarProperty Name="IDPROFILE" ColumnName="IDPROFILE" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+          <ScalarProperty Name="BIO" ColumnName="BIO" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ReturnUserID" FunctionName="HappyPicturesModel.Store.ReturnUserID" />
+  </EntityContainerMapping>
+</Mapping>

@@ -38,6 +38,15 @@ namespace OICAR19_API.Models
         public virtual DbSet<STORY_CARD> STORY_CARD { get; set; }
         public virtual DbSet<TAG> TAGS { get; set; }
     
+        public virtual ObjectResult<CreateUserID_Result> CreateUserID(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CreateUserID_Result>("CreateUserID", emailParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> GetAdminID(string email)
         {
             var emailParameter = email != null ?
@@ -47,22 +56,22 @@ namespace OICAR19_API.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetAdminID", emailParameter);
         }
     
-        public virtual ObjectResult<GetStoryCards_Result> GetStoryCards(Nullable<int> storyID)
-        {
-            var storyIDParameter = storyID.HasValue ?
-                new ObjectParameter("storyID", storyID) :
-                new ObjectParameter("storyID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetStoryCards_Result>("GetStoryCards", storyIDParameter);
-        }
-    
-        public virtual int CreateUserID(string email)
+        public virtual ObjectResult<GetUser_Result> GetUser(string email)
         {
             var emailParameter = email != null ?
                 new ObjectParameter("email", email) :
                 new ObjectParameter("email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateUserID", emailParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", emailParameter);
+        }
+    
+        public virtual int ReturnUserID(string email, ObjectParameter userid)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReturnUserID", emailParameter, userid);
         }
     }
 }

@@ -41,6 +41,11 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
+        /// <summary>
+        /// This endpoint will return cards of a story with their respective order in the story.
+        /// </summary>
+        /// <param name="storyID"></param>
+        /// <returns>CARD</returns>
         [HttpGet]
         [Route("api/Cards/GetStoryCards")]
         [ResponseType(typeof(CARD))]
@@ -50,10 +55,6 @@ namespace OICAR19_API.Controllers
             {
                 try
                 {
-                    
-                    //var cards = db.CARDS.SqlQuery("exec GetStoryCards @param1", new SqlParameter("param1", storyID)).ToList();
-                    //var test = db.Database.ExecuteSqlCommand("exec GetStoryCards @param1", new SqlParameter("param1", storyID));
-
                     List<CARD> cardsDbSet = db.CARDS
                         .Include(c => c.TAGS)
                         .Include(c => c.FORMAT.IMAGE)
@@ -62,20 +63,17 @@ namespace OICAR19_API.Controllers
                         .Include(c => c.STORY_CARD).Where(sc=>sc.STORY_CARD.Any(x=>x.STORYID==storyID))
                         .ToList();
                     List<STORY_CARD> scDbSet = db.STORY_CARD.Where(sc=>sc.STORYID==storyID).ToList();
-                    //foreach (var item in cardsDbSet)
-                    //{
-                    //    if (item.)
-                    //    {
-
-                    //    }
-                    //}
-
-
-                    return Ok(cardsDbSet);
+                    foreach (var card in cardsDbSet)
+                    {
+                        card.CardOrder = db.STORY_CARD
+                            .Where(sc => sc.STORYID == storyID)
+                            .Where(sc => sc.CARDID == card.IDCARD)
+                            .FirstOrDefault().CARD_ORDER;
+                    }
+                    return Ok(cardsDbSet.OrderBy(c=>c.CardOrder));
                 }
                 catch (Exception ex)
                 {
-
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
             }

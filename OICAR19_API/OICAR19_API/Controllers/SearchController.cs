@@ -12,6 +12,12 @@ namespace OICAR19_API.Controllers
 {
     public class SearchController : ApiController
     {
+        /// <summary>
+        /// Search Story by single TAG
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Search/SearchStoryByTag")]
         [ResponseType(typeof(STORy))]
@@ -43,7 +49,12 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
-
+        /// <summary>
+        /// Search Card by single TAG
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Search/SearchCardByTag")]
         [ResponseType(typeof(CARD))]
@@ -68,7 +79,12 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
-
+        /// <summary>
+        /// Search Story by Name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Search/SearchStoryByName")]
         [ResponseType(typeof(STORy))]
@@ -101,7 +117,12 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
-
+        /// <summary>
+        /// Search Card by Name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/Search/SearchCardByName")]
         [ResponseType(typeof(CARD))]

@@ -105,7 +105,7 @@ namespace OICAR19_API
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        c.IncludeXmlComments(AppDomain.CurrentDomain.BaseDirectory + "bin\\OICAR19_API.xml");
+                        c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}App_Data\\OICAR19_API.xml");
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -210,7 +210,7 @@ namespace OICAR19_API
                         // in a badge at the bottom of the page. Use these options to set a different validator URL or to disable the
                         // feature entirely.
                         //c.SetValidatorUrl("http://localhost/validator");
-                        //c.DisableValidator();
+                        c.DisableValidator();
 
                         // Use this option to control how the Operation listing is displayed.
                         // It can be set to "None" (default), "List" (shows operations for each resource),

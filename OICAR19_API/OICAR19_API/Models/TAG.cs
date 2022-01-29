@@ -21,9 +21,10 @@ namespace OICAR19_API.Models
             this.CARDS = new HashSet<CARD>();
             this.STORIES = new HashSet<STORy>();
         }
-    
+        [JsonIgnore]
         public int IDTAG { get; set; }
         public string VALUE { get; set; }
+        [JsonIgnore]
         public Nullable<int> TYPE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
