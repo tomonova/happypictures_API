@@ -78,7 +78,11 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
-
+        /// <summary>
+        /// Insert new card
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("api/Cards/InsertCard")]
         [ResponseType(typeof(int))]
@@ -108,6 +112,57 @@ namespace OICAR19_API.Controllers
                 return Content(HttpStatusCode.Created, new { idCard = card.IDCARD });
             }
         }
+
+        /// <summary>
+        /// Delete a card
+        /// </summary>
+        /// <param name="cardID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("api/Cards/DeleteCard")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult DeleteCard(int cardID, int userID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    CARD oldCard = db.CARDS
+                        .Include(c=>c.FORMAT)
+                        .Include(c=>c.TAGS)
+                        .Where(c => c.IDCARD == cardID)
+                        .Where(c=>c.PROFILEID==userID)
+                        .FirstOrDefault();
+                    if (oldCard.SHARED==1)
+                    {
+                        return Content(HttpStatusCode.BadRequest, "You cannot delte shared card");
+                    }
+                    var sc = db.STORY_CARD.Where(x => x.CARDID == cardID).ToList();
+                    foreach (var item in sc)
+                    {
+                        db.STORY_CARD.Remove(item);
+                    }
+                    db.CARDS.Remove(oldCard);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return Ok();
+            }
+        }
+
+        /// <summary>
+        /// Edit existing card
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("api/Cards/EditCard")]
         [ResponseType(typeof(void))]

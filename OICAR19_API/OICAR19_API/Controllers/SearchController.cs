@@ -29,8 +29,9 @@ namespace OICAR19_API.Controllers
                 {
                     var stories = db.STORIES
                         .Include(s => s.IMAGE)
-                        .Include(s => s.TAGS.Where(t => t.VALUE.Equals(tag)))
+                        .Include(s => s.TAGS)
                         .Where(s => s.PROFILEID == userID || s.SHARED == Status.SHARED)
+                        .Where(s=>s.TAGS.Any(t=>t.VALUE==tag))
                         .ToList();
                     foreach (STORy story in stories)
                     {
@@ -65,80 +66,12 @@ namespace OICAR19_API.Controllers
                 try
                 {
                     return Ok(db.CARDS
-                        .Include(c => c.TAGS.Where(t => t.VALUE.Equals(tag)))
-                        .Include(c => c.FORMAT.IMAGE)
-                        .Include(c => c.FORMAT.IMAGE1)
-                        .Include(c => c.FORMAT.IMAGE2)
-                        .Where(c => c.SHARED.Equals(Status.SHARED) || c.PROFILEID == userID)
-                        .ToList());
-                }
-                catch (Exception ex)
-                {
-
-                    return Content(HttpStatusCode.BadRequest, ex.Message);
-                }
-            }
-        }
-        /// <summary>
-        /// Search Story by Name
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="userID"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Search/SearchStoryByName")]
-        [ResponseType(typeof(STORy))]
-        public IHttpActionResult SearchStoryByName(string name, int userID)
-        {
-            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
-            {
-                try
-                {
-                    var stories = db.STORIES
-                        .Include(s => s.IMAGE)
-                        .Include(s => s.TAGS)
-                        .Where(s => s.PROFILEID == userID || s.SHARED == Status.SHARED)
-                        .Where(s => s.NAME.Equals(name))
-                        .ToList();
-                    foreach (STORy story in stories)
-                    {
-                        story.NumberOfLikes = db.LIKES.Where(l => l.STORYID == story.IDSTORY).Count();
-                        if (db.LIKES.Find(userID, story.IDSTORY) != null)
-                        {
-                            story.FAVOURITE = 1;
-                        }
-                    }
-                    return Ok(stories);
-                }
-                catch (Exception ex)
-                {
-
-                    return Content(HttpStatusCode.BadRequest, ex.Message);
-                }
-            }
-        }
-        /// <summary>
-        /// Search Card by Name
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="userID"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/Search/SearchCardByName")]
-        [ResponseType(typeof(CARD))]
-        public IHttpActionResult SearchCardByName(string name,int userID)
-        {
-            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
-            {
-                try
-                {
-                    return Ok(db.CARDS
                         .Include(c => c.TAGS)
                         .Include(c => c.FORMAT.IMAGE)
                         .Include(c => c.FORMAT.IMAGE1)
                         .Include(c => c.FORMAT.IMAGE2)
                         .Where(c => c.SHARED.Equals(Status.SHARED) || c.PROFILEID == userID)
-                        .Where(c => c.NAME.Equals(name))
+                        .Where(c=>c.TAGS.Any(t=>t.VALUE==tag))
                         .ToList());
                 }
                 catch (Exception ex)
@@ -148,6 +81,75 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
+        ///// <summary>
+        ///// Search Story by Name
+        ///// </summary>
+        ///// <param name="name"></param>
+        ///// <param name="userID"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //[Route("api/Search/SearchStoryByName")]
+        //[ResponseType(typeof(STORy))]
+        //public IHttpActionResult SearchStoryByName(string name, int userID)
+        //{
+        //    using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+        //    {
+        //        try
+        //        {
+        //            var stories = db.STORIES
+        //                .Include(s => s.IMAGE)
+        //                .Include(s => s.TAGS)
+        //                .Where(s => s.PROFILEID == userID || s.SHARED == Status.SHARED)
+        //                .Where(s => s.NAME.Equals(name))
+        //                .ToList();
+        //            foreach (STORy story in stories)
+        //            {
+        //                story.NumberOfLikes = db.LIKES.Where(l => l.STORYID == story.IDSTORY).Count();
+        //                if (db.LIKES.Find(userID, story.IDSTORY) != null)
+        //                {
+        //                    story.FAVOURITE = 1;
+        //                }
+        //            }
+        //            return Ok(stories);
+        //        }
+        //        catch (Exception ex)
+        //        {
+
+        //            return Content(HttpStatusCode.BadRequest, ex.Message);
+        //        }
+        //    }
+        //}
+        ///// <summary>
+        ///// Search Card by Name
+        ///// </summary>
+        ///// <param name="name"></param>
+        ///// <param name="userID"></param>
+        ///// <returns></returns>
+        //[HttpGet]
+        //[Route("api/Search/SearchCardByName")]
+        //[ResponseType(typeof(CARD))]
+        //public IHttpActionResult SearchCardByName(string name,int userID)
+        //{
+        //    using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+        //    {
+        //        try
+        //        {
+        //            return Ok(db.CARDS
+        //                .Include(c => c.TAGS)
+        //                .Include(c => c.FORMAT.IMAGE)
+        //                .Include(c => c.FORMAT.IMAGE1)
+        //                .Include(c => c.FORMAT.IMAGE2)
+        //                .Where(c => c.SHARED.Equals(Status.SHARED) || c.PROFILEID == userID)
+        //                .Where(c => c.NAME.Equals(name))
+        //                .ToList());
+        //        }
+        //        catch (Exception ex)
+        //        {
+
+        //            return Content(HttpStatusCode.BadRequest, ex.Message);
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Search Tags on Cards
@@ -156,13 +158,15 @@ namespace OICAR19_API.Controllers
         [HttpGet]
         [Route("api/Search/SearchCardTags")]
         [ResponseType(typeof(List<String>))]
-        public IHttpActionResult SearchCardTags()
+        public IHttpActionResult SearchCardTags(int profileID)
         {
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
             {
                 try
                 {
-                    var tags = db.CARDS.Include(c=>c.TAGS);
+                    var tags = db.CARDS
+                        .Include(c=>c.TAGS)
+                        .Where(x=>x.SHARED==1 || x.PROFILEID==profileID);
                     List<String> listaTagova = new List<string>();
                     foreach (var card in tags)
                     {
@@ -188,13 +192,15 @@ namespace OICAR19_API.Controllers
         [HttpGet]
         [Route("api/Search/SearchStoryTags")]
         [ResponseType(typeof(List<String>))]
-        public IHttpActionResult SearchStoryTags()
+        public IHttpActionResult SearchStoryTags(int profileID)
         {
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
             {
                 try
                 {
-                    var tags = db.STORIES.Include(s => s.TAGS);
+                    var tags = db.STORIES
+                        .Include(s => s.TAGS)
+                        .Where(x=>x.SHARED==1||x.PROFILEID==profileID);
                     List<String> listaTagova = new List<string>();
                     foreach (var story in tags)
                     {

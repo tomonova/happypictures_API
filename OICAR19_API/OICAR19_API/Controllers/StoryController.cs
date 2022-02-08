@@ -197,7 +197,7 @@ namespace OICAR19_API.Controllers
         }
 
         /// <summary>
-        /// This interface must receive story ID and the story, it will perform an update of the story. If story does not exist it will not be inserted
+        /// This interface must receive  user ID and the story, it will perform an update of the story.
         /// </summary>
         [HttpPut]
         [Route("api/Story/UpdateStory")]
@@ -233,6 +233,52 @@ namespace OICAR19_API.Controllers
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
                 return StatusCode(HttpStatusCode.NoContent);
+            }
+        }
+
+        /// <summary>
+        /// Delete a card
+        /// </summary>
+        /// <param name="cardID"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("api/Cards/DeleteStory")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult DeleteStory(int storyID, int userID)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    STORy oldStory = db.STORIES
+                        .Include(s=>s.STORY_CARD)
+                        .Include(s=>s.TAGS)
+                        .Include(s=>s.LIKES)
+                        .Where(s => s.IDSTORY == storyID)
+                        .Where(c => c.PROFILEID == userID)
+                        .FirstOrDefault();
+                    if (oldStory.SHARED == 1)
+                    {
+                        return Content(HttpStatusCode.BadRequest, "You cannot delete shared story");
+                    }
+                    var sc = db.STORY_CARD.Where(x => x.STORYID == storyID).ToList();
+                    foreach (var item in sc)
+                    {
+                        db.STORY_CARD.Remove(item);
+                    }
+                    db.STORIES.Remove(oldStory);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return Ok();
             }
         }
 

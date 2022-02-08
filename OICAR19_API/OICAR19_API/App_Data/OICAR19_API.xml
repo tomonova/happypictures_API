@@ -481,6 +481,33 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:OICAR19_API.Controllers.AccountController.DeleteAccount(System.Int32)">
+            <summary>
+            Delete an existing account and all of its objects
+            </summary>
+            <param name="profileID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.AccountController.CreateProfile(OICAR19_API.Models.PROFILE)">
+            <summary>
+            Update an existing account
+            </summary>
+            <param name="entryProfile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.AccountController.GetProfile">
+            <summary>
+            Get profile information
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.AccountController.Register(OICAR19_API.Models.RegisterBindingModel)">
+            <summary>
+            Register a new account
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:OICAR19_API.Controllers.CardsController.GetCards(System.Int32)">
             <summary>
             This interface returns all users cards and public(shared) cards
@@ -492,6 +519,28 @@
             </summary>
             <param name="storyID"></param>
             <returns>CARD</returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.CardsController.InsertCard(OICAR19_API.Models.CARD)">
+            <summary>
+            Insert new card
+            </summary>
+            <param name="card"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.CardsController.DeleteCard(System.Int32,System.Int32)">
+            <summary>
+            Delete a card
+            </summary>
+            <param name="cardID"></param>
+            <param name="userID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.CardsController.EditCard(OICAR19_API.Models.CARD)">
+            <summary>
+            Edit existing card
+            </summary>
+            <param name="card"></param>
+            <returns></returns>
         </member>
         <member name="M:OICAR19_API.Controllers.ImagesController.GetImages">
             <summary>
@@ -572,29 +621,13 @@
             <param name="userID"></param>
             <returns></returns>
         </member>
-        <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryByName(System.String,System.Int32)">
-            <summary>
-            Search Story by Name
-            </summary>
-            <param name="name"></param>
-            <param name="userID"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OICAR19_API.Controllers.SearchController.SearchCardByName(System.String,System.Int32)">
-            <summary>
-            Search Card by Name
-            </summary>
-            <param name="name"></param>
-            <param name="userID"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OICAR19_API.Controllers.SearchController.SearchCardTags">
+        <member name="M:OICAR19_API.Controllers.SearchController.SearchCardTags(System.Int32)">
             <summary>
             Search Tags on Cards
             </summary>
             <returns></returns>
         </member>
-        <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryTags">
+        <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryTags(System.Int32)">
             <summary>
             Search Tags on Stories
             </summary>
@@ -639,8 +672,16 @@
         </member>
         <member name="M:OICAR19_API.Controllers.StoryController.UpdateImage(System.Int32,OICAR19_API.Models.STORy)">
             <summary>
-            This interface must receive story ID and the story, it will perform an update of the story. If story does not exist it will not be inserted
+            This interface must receive  user ID and the story, it will perform an update of the story.
             </summary>
+        </member>
+        <member name="M:OICAR19_API.Controllers.StoryController.DeleteStory(System.Int32,System.Int32)">
+            <summary>
+            Delete a card
+            </summary>
+            <param name="cardID"></param>
+            <param name="userID"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
