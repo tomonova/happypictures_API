@@ -148,6 +148,71 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
+
+        /// <summary>
+        /// Search Tags on Cards
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Search/SearchCardTags")]
+        [ResponseType(typeof(List<String>))]
+        public IHttpActionResult SearchCardTags()
+        {
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    var tags = db.CARDS.Include(c=>c.TAGS);
+                    List<String> listaTagova = new List<string>();
+                    foreach (var card in tags)
+                    {
+                        foreach (var tag in card.TAGS)
+                        {
+                            listaTagova.Add(tag.VALUE);
+                        }
+                    }
+
+                    return Ok(listaTagova);
+                }
+                catch (Exception ex)
+                {
+
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+        }
+        /// <summary>
+        /// Search Tags on Stories
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("api/Search/SearchStoryTags")]
+        [ResponseType(typeof(List<String>))]
+        public IHttpActionResult SearchStoryTags()
+        {
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    var tags = db.STORIES.Include(s => s.TAGS);
+                    List<String> listaTagova = new List<string>();
+                    foreach (var story in tags)
+                    {
+                        foreach (var tag in story.TAGS)
+                        {
+                            listaTagova.Add(tag.VALUE);
+                        }
+                    }
+
+                    return Ok(listaTagova);
+                }
+                catch (Exception ex)
+                {
+
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+        }
     }
 }
 

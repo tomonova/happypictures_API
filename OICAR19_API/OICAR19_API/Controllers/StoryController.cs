@@ -10,6 +10,9 @@ using System.Data.Entity;
 
 namespace OICAR19_API.Controllers
 {
+    /// <summary>
+    /// Controller that returns all story related entities
+    /// </summary>
     public class StoryController : ApiController
     {
         /// <summary>

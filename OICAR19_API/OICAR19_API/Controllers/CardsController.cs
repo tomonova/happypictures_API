@@ -18,7 +18,7 @@ namespace OICAR19_API.Controllers
         /// </summary>
         [HttpGet]
         [Route("api/Cards/GetCards")]
-        [ResponseType(typeof(CARD))]
+        [ResponseType(typeof(List<CARD>))]
         public IHttpActionResult GetCards(int userID)
         {
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
@@ -48,7 +48,7 @@ namespace OICAR19_API.Controllers
         /// <returns>CARD</returns>
         [HttpGet]
         [Route("api/Cards/GetStoryCards")]
-        [ResponseType(typeof(CARD))]
+        [ResponseType(typeof(List<CARD>))]
         public IHttpActionResult GetStoryCards(int storyID)
         {
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
@@ -76,6 +76,78 @@ namespace OICAR19_API.Controllers
                 {
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Cards/InsertCard")]
+        [ResponseType(typeof(int))]
+        public IHttpActionResult InsertCard(CARD card)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    card.FORMAT.IMG1ID = card.FORMAT.IMAGE.IDIMAGE;
+                    card.FORMAT.IMG2ID = card.FORMAT.IMAGE1.IDIMAGE;
+                    card.FORMAT.IMG3ID = card.FORMAT.IMAGE2.IDIMAGE;
+                    card.FORMAT.IMAGE = null;
+                    card.FORMAT.IMAGE1 = null;
+                    card.FORMAT.IMAGE2 = null;
+                    db.CARDS.Add(card);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return Content(HttpStatusCode.Created, new { idCard = card.IDCARD });
+            }
+        }
+        [HttpPut]
+        [Route("api/Cards/EditCard")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult EditCard(CARD card)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                try
+                {
+                    CARD oldCard = db.CARDS.Where(c => c.IDCARD == card.IDCARD).FirstOrDefault();
+                    card.FORMATID = oldCard.FORMATID;
+                    oldCard.FORMAT.IDFORMAT = oldCard.FORMAT.IDFORMAT;
+                    oldCard.FORMAT.IMG1ID = card.FORMAT.IMAGE.IDIMAGE;
+                    oldCard.FORMAT.IMG2ID = card.FORMAT.IMAGE1.IDIMAGE;
+                    oldCard.FORMAT.IMG3ID = card.FORMAT.IMAGE2.IDIMAGE;
+                    oldCard.FORMAT.COLOR = card.FORMAT.COLOR;
+                    oldCard.FORMAT.FONT_SIZE = card.FORMAT.FONT_SIZE;
+                    oldCard.FORMAT.FONT_FORMAT = card.FORMAT.FONT_SIZE;
+                    oldCard.FORMAT.LAYOUT = card.FORMAT.LAYOUT;
+                    oldCard.TEXT = card.TEXT;
+                    if (card.SHARED==1)
+                    {
+                        PROFILE profile = db.PROFILES.Where(p => p.EMAIL == Status.ADMIN_ACCOUNT).FirstOrDefault();
+                        oldCard.PROFILEID = profile.IDPROFILE;
+                        oldCard.SHARED = 1;
+                    }
+                    oldCard.TAGS = card.TAGS;
+                    oldCard.NAME = card.NAME;
+                    db.Entry(oldCard).State=EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return Ok();
             }
         }
     }

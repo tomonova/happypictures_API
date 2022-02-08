@@ -12,6 +12,6 @@ namespace OICAR19_API.Models
         public static readonly int DELETED = 1;
         public static readonly int NOT_DELETED = 0; 
         public static readonly int LIKED = 1;
-        public static readonly string ADMIN_ACCOUNT = "admin@happypictures.org";
+        public static readonly string ADMIN_ACCOUNT = "HPadmin@mail.com";
     }
 }

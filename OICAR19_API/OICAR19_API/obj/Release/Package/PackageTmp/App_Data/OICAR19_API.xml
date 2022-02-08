@@ -521,6 +521,41 @@
             If Image wass shared, as agreed by license agreement it will not be deleted, it is transfered to Happy Pictures account and will remain shared
             </summary>
         </member>
+        <member name="T:OICAR19_API.Controllers.ScheduleController">
+            <summary>
+            Controler for schedule management
+            </summary>
+        </member>
+        <member name="M:OICAR19_API.Controllers.ScheduleController.GetSchedule(System.Int32,System.DateTime)">
+            <summary>
+            Return schedule with images for a chosen date
+            </summary>
+            <param name="userID"></param>
+            <param name="date">date format yyyy-mm-dd</param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.ScheduleController.InsertSchedule(OICAR19_API.Models.SCHEDULE)">
+            <summary>
+            Insert a new scheudle
+            </summary>
+            <param name="schedule">When insertin provide the following: PROFILEID, SCHEDULE_DATE and SCHEDULE_IMAGE
+            for SCHEDULE_IMAGE properties provide only IMAGEID and POSITION</param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.ScheduleController.EditSchedule(OICAR19_API.Models.SCHEDULE)">
+            <summary>
+            Edit an existing schedule
+            </summary>
+            <param name="schedule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.ScheduleController.DeleteSchedule(System.Int32)">
+            <summary>
+            Delete a schedule
+            </summary>
+            <param name="idSchedule"></param>
+            <returns></returns>
+        </member>
         <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryByTag(System.String,System.Int32)">
             <summary>
             Search Story by single TAG
@@ -552,6 +587,23 @@
             <param name="name"></param>
             <param name="userID"></param>
             <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.SearchController.SearchCardTags">
+            <summary>
+            Search Tags on Cards
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryTags">
+            <summary>
+            Search Tags on Stories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:OICAR19_API.Controllers.StoryController">
+            <summary>
+            Controller that returns all story related entities
+            </summary>
         </member>
         <member name="M:OICAR19_API.Controllers.StoryController.DiscoverStories(System.Int32)">
             <summary>
