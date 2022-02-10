@@ -419,6 +419,15 @@
       <Parameter Name="email" Mode="In" Type="String" />
       <Parameter Name="userid" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="DeleteUnassignedTags" />
+    <FunctionImport Name="DeleteUser">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ShareStory">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+      <Parameter Name="storyID" Mode="In" Type="Int32" />
+      <Parameter Name="adminAccount" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="CreateUserID_Result">
     <Property Type="Int32" Name="IDPROFILE" Nullable="false" />

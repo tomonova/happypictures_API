@@ -1,6 +1,7 @@
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.dll.config
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.pdb
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\roslyn\csc.exe
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\roslyn\csc.exe.config
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\roslyn\csc.rsp
@@ -53,6 +54,7 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Web
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Newtonsoft.Json.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Owin.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Swashbuckle.Core.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Swashbuckle.Examples.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.ComponentModel.Annotations.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Net.Http.Formatting.dll
@@ -99,10 +101,8 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.Asp
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\System.Web.Http.Owin.xml
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Release\OICAR19_API.csproj.AssemblyReference.cache
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Release\OICAR19_API.csproj.CoreCompileInputs.cache
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Release\OICAR19_API.csproj.CopyComplete
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Release\OICAR19_API.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Release\OICAR19_API.pdb
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\OICAR19_API.xml
-C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Swashbuckle.Examples.dll
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Release\OICAR19_API.csproj.AssemblyReference.cache

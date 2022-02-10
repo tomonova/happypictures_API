@@ -184,5 +184,8 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ReturnUserID" FunctionName="HappyPicturesModel.Store.ReturnUserID" />
+    <FunctionImportMapping FunctionImportName="DeleteUnassignedTags" FunctionName="HappyPicturesModel.Store.DeleteUnassignedTags" />
+    <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="HappyPicturesModel.Store.DeleteUser" />
+    <FunctionImportMapping FunctionImportName="ShareStory" FunctionName="HappyPicturesModel.Store.ShareStory" />
   </EntityContainerMapping>
 </Mapping>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HappyPicturesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HappyPicturesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CARDS">
           <Key>
             <PropertyRef Name="IDCARD" />
@@ -357,6 +357,10 @@
         <Function Name="CreateUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="DeleteUnassignedTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetAdminID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
         </Function>
@@ -366,6 +370,11 @@
         <Function Name="ReturnUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="nvarchar" Mode="In" />
           <Parameter Name="userid" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="ShareStory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="storyID" Type="int" Mode="In" />
+          <Parameter Name="adminAccount" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="HappyPicturesModelStoreContainer">
           <EntitySet Name="CARDS" EntityType="Self.CARDS" Schema="dbo" store:Type="Tables" />
@@ -457,8 +466,7 @@
             <End Role="STORIES" EntitySet="STORIES" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HappyPicturesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -869,17 +877,26 @@
             <End Role="TAGS" EntitySet="TAGS" />
           </AssociationSet>
           <FunctionImport Name="CreateUserID" ReturnType="Collection(HappyPicturesModel.CreateUserID_Result)">
-            <Parameter Name="email" Mode="In" Type="String" />
+          <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAdminID" ReturnType="Collection(Int32)">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUser" ReturnType="Collection(HappyPicturesModel.GetUser_Result)">
-            <Parameter Name="email" Mode="In" Type="String" />
+          <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ReturnUserID">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="userid" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteUnassignedTags" />
+          <FunctionImport Name="DeleteUser">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ShareStory">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="storyID" Mode="In" Type="Int32" />
+            <Parameter Name="adminAccount" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CreateUserID_Result">
@@ -1115,6 +1132,9 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ReturnUserID" FunctionName="HappyPicturesModel.Store.ReturnUserID" />
+          <FunctionImportMapping FunctionImportName="DeleteUnassignedTags" FunctionName="HappyPicturesModel.Store.DeleteUnassignedTags" />
+          <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="HappyPicturesModel.Store.DeleteUser" />
+          <FunctionImportMapping FunctionImportName="ShareStory" FunctionName="HappyPicturesModel.Store.ShareStory" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

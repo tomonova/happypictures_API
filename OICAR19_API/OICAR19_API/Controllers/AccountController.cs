@@ -120,25 +120,30 @@ namespace OICAR19_API.Controllers
         //    };
         //}
 
-        //// POST api/Account/ChangePassword
-        //[Route("ChangePassword")]
-        //public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // POST api/Account/ChangePassword
+        /// <summary>
+        /// Endpoint for changing existing accounts password
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-        //        model.NewPassword);
+            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+                model.NewPassword);
 
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         //// POST api/Account/SetPassword
         //[Route("SetPassword")]
@@ -173,13 +178,6 @@ namespace OICAR19_API.Controllers
                 try
                 {
                     SqlParameter inParm = new SqlParameter("@profileID", profileID);
-                    SqlParameter outParm = new SqlParameter()
-                    {
-                        ParameterName = "@profileID",
-                        SqlDbType = System.Data.SqlDbType.Int,
-                        Size = 100,
-                        Direction = System.Data.ParameterDirection.Output
-                    };
                     db.Database.ExecuteSqlCommand("exec  DeleteUser @profileID", inParm);
                     db.SaveChanges();
                     return Ok();

@@ -481,6 +481,13 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:OICAR19_API.Controllers.AccountController.ChangePassword(OICAR19_API.Models.ChangePasswordBindingModel)">
+            <summary>
+            Endpoint for changing existing accounts password
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:OICAR19_API.Controllers.AccountController.DeleteAccount(System.Int32)">
             <summary>
             Delete an existing account and all of its objects
@@ -679,7 +686,7 @@
             <summary>
             Delete a card
             </summary>
-            <param name="cardID"></param>
+            <param name="storyID"></param>
             <param name="userID"></param>
             <returns></returns>
         </member>

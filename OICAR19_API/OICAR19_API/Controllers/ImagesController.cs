@@ -137,6 +137,10 @@ namespace OICAR19_API.Controllers
                     {
                         return Content(HttpStatusCode.NotFound, "Image does not exist");
                     }
+                    if (!ImageExists(idImage))
+                    {
+                        return NotFound();
+                    }
                     if (image.SHARED == Status.NOT_SHARED)
                     {
                         db.IMAGES.Remove(image);

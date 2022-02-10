@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace OICAR19_API.Controllers
 {
@@ -215,13 +216,33 @@ namespace OICAR19_API.Controllers
             {
                 try
                 {
+                    STORy oldStory = db.STORIES
+                        .Include(s => s.LIKES)
+                        .Include(s => s.STORY_CARD)
+                        .Include(s => s.TAGS)
+                        .Where(s => s.IDSTORY == story.IDSTORY)
+                        .FirstOrDefault();
+                    if (oldStory.SHARED==Status.SHARED)
+                    {
+                        return Content(HttpStatusCode.BadRequest, "You cannot edit shared story");
+                    }
                     if (db.IMAGES.Find(story.IMAGE.IDIMAGE) != null)
                     {
-                        story.THUMBNAIL = story.IMAGE.IDIMAGE;
-                        story.FAVOURITE = 0;
-                        story.IMAGE = null;
+                        oldStory.THUMBNAIL = story.IMAGE.IDIMAGE;
                     }
-                    db.Entry(story).State = EntityState.Modified; ;
+                    oldStory.STORY_CARD = story.STORY_CARD;
+                    oldStory.TAGS = story.TAGS;
+                    oldStory.NAME = story.NAME;
+                    oldStory.DESCRIPTION = story.DESCRIPTION;
+                    if (story.SHARED==Status.SHARED)
+                    {
+                        SqlParameter profileID = new SqlParameter("@profileID", userID);
+                        SqlParameter storyID = new SqlParameter("@storyID", story.IDSTORY);
+
+                        db.Database.ExecuteSqlCommand("exec ShareStory @profileID, @storyID,@admin", profileID, storyID,Status.ADMIN_ACCOUNT);
+                    }
+
+                    db.Entry(oldStory).State = EntityState.Modified; ;
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -239,11 +260,11 @@ namespace OICAR19_API.Controllers
         /// <summary>
         /// Delete a card
         /// </summary>
-        /// <param name="cardID"></param>
+        /// <param name="storyID"></param>
         /// <param name="userID"></param>
         /// <returns></returns>
         [HttpDelete]
-        [Route("api/Cards/DeleteStory")]
+        [Route("api/Story/DeleteStory")]
         [ResponseType(typeof(void))]
         public IHttpActionResult DeleteStory(int storyID, int userID)
         {

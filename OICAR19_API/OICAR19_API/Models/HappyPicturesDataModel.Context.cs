@@ -73,5 +73,36 @@ namespace OICAR19_API.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ReturnUserID", emailParameter, userid);
         }
+    
+        public virtual int DeleteUnassignedTags()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteUnassignedTags");
+        }
+    
+        public virtual int DeleteUser(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteUser", userIDParameter);
+        }
+    
+        public virtual int ShareStory(Nullable<int> userID, Nullable<int> storyID, string adminAccount)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(int));
+    
+            var storyIDParameter = storyID.HasValue ?
+                new ObjectParameter("storyID", storyID) :
+                new ObjectParameter("storyID", typeof(int));
+    
+            var adminAccountParameter = adminAccount != null ?
+                new ObjectParameter("adminAccount", adminAccount) :
+                new ObjectParameter("adminAccount", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ShareStory", userIDParameter, storyIDParameter, adminAccountParameter);
+        }
     }
 }
