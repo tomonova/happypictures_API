@@ -56,6 +56,7 @@
     <Property Name="BIO" Type="nvarchar(max)" />
     <Property Name="DELETED" Type="int" Nullable="false" />
     <Property Name="USERID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="EMAIL" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="SCHEDULE_IMAGE">
     <Key>
@@ -351,8 +352,24 @@
   <Function Name="CreateUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="email" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="DeleteUnassignedTags" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetAdminID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="ReturnUserID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="userid" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="ShareStory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+    <Parameter Name="storyID" Type="int" Mode="In" />
+    <Parameter Name="adminAccount" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="HappyPicturesModelStoreContainer">
     <EntitySet Name="CARDS" EntityType="Self.CARDS" Schema="dbo" store:Type="Tables" />

@@ -105,3 +105,4 @@ C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Debug\OICAR19
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Debug\OICAR19_API.csproj.CopyComplete
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Debug\OICAR19_API.dll
 C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\obj\Debug\OICAR19_API.pdb
+C:\Users\TomoNova\source\repos\OICAR19\OICAR19_API\OICAR19_API\bin\Swashbuckle.Examples.dll

@@ -59,6 +59,7 @@
           <ScalarProperty Name="BIO" ColumnName="BIO" />
           <ScalarProperty Name="DELETED" ColumnName="DELETED" />
           <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -129,7 +130,62 @@
         <ScalarProperty Name="IDTAG" ColumnName="TAGID" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="CreateUserID" FunctionName="HappyPicturesModel.Store.CreateUserID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HappyPicturesModel.CreateUserID_Result">
+          <ScalarProperty Name="IDPROFILE" ColumnName="IDPROFILE" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+          <ScalarProperty Name="BIO" ColumnName="BIO" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetAdminID" FunctionName="HappyPicturesModel.Store.GetAdminID" />
-    <FunctionImportMapping FunctionImportName="CreateUserID" FunctionName="HappyPicturesModel.Store.CreateUserID" />
+    <FunctionImportMapping FunctionImportName="GetUser" FunctionName="HappyPicturesModel.Store.GetUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HappyPicturesModel.GetUser_Result">
+          <ScalarProperty Name="IDPROFILE" ColumnName="IDPROFILE" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+          <ScalarProperty Name="BIO" ColumnName="BIO" />
+          <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email1" ColumnName="Email1" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ReturnUserID" FunctionName="HappyPicturesModel.Store.ReturnUserID" />
+    <FunctionImportMapping FunctionImportName="DeleteUnassignedTags" FunctionName="HappyPicturesModel.Store.DeleteUnassignedTags" />
+    <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="HappyPicturesModel.Store.DeleteUser" />
+    <FunctionImportMapping FunctionImportName="ShareStory" FunctionName="HappyPicturesModel.Store.ShareStory" />
   </EntityContainerMapping>
 </Mapping>

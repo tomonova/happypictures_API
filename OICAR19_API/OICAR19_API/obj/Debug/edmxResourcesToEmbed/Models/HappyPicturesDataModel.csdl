@@ -72,6 +72,7 @@
     <Property Name="BIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DELETED" Type="Int32" Nullable="false" />
     <Property Name="USERID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CARDS" Relationship="Self.FKPROFILES_CARDS" FromRole="PROFILES" ToRole="CARDS" />
     <NavigationProperty Name="IMAGES" Relationship="Self.FKIMAGES" FromRole="PROFILES" ToRole="IMAGES" />
     <NavigationProperty Name="LIKES" Relationship="Self.FKPROFILE" FromRole="PROFILES" ToRole="LIKES" />
@@ -405,21 +406,71 @@
       <End Role="STORIES" EntitySet="STORIES" />
       <End Role="TAGS" EntitySet="TAGS" />
     </AssociationSet>
+    <FunctionImport Name="CreateUserID" ReturnType="Collection(HappyPicturesModel.CreateUserID_Result)">
+      <Parameter Name="email" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="GetAdminID" ReturnType="Collection(Int32)">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="GetStoryCards" ReturnType="Collection(HappyPicturesModel.GetStoryCards_Result)">
-      <Parameter Name="storyID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="CreateUserID">
+    <FunctionImport Name="GetUser" ReturnType="Collection(HappyPicturesModel.GetUser_Result)">
       <Parameter Name="email" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ReturnUserID">
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="userid" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteUnassignedTags" />
+    <FunctionImport Name="DeleteUser">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ShareStory">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+      <Parameter Name="storyID" Mode="In" Type="Int32" />
+      <Parameter Name="adminAccount" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="GetStoryCards_Result">
-    <Property Type="Int32" Name="IDCARD" Nullable="false" />
-    <Property Type="String" Name="NAME" Nullable="true" MaxLength="250" />
-    <Property Type="String" Name="TEXT" Nullable="true" />
-    <Property Type="Int32" Name="CardOrder" Nullable="false" />
-    <Property Type="Int32" Name="SHARED" Nullable="false" />
+  <ComplexType Name="CreateUserID_Result">
+    <Property Type="Int32" Name="IDPROFILE" Nullable="false" />
+    <Property Type="String" Name="FIRSTNAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="LASTNAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="BIO" Nullable="true" />
+    <Property Type="Int32" Name="DELETED" Nullable="false" />
+    <Property Type="String" Name="USERID" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="EMAIL" Nullable="true" />
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Email1" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="EmailConfirmed" Nullable="false" />
+    <Property Type="String" Name="PasswordHash" Nullable="true" />
+    <Property Type="String" Name="SecurityStamp" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" />
+    <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="false" />
+    <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="false" />
+    <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="LockoutEnabled" Nullable="false" />
+    <Property Type="Int32" Name="AccessFailedCount" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="GetUser_Result">
+    <Property Type="Int32" Name="IDPROFILE" Nullable="false" />
+    <Property Type="String" Name="FIRSTNAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="LASTNAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="BIO" Nullable="true" />
+    <Property Type="Int32" Name="DELETED" Nullable="false" />
+    <Property Type="String" Name="USERID" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="EMAIL" Nullable="true" />
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Email1" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="EmailConfirmed" Nullable="false" />
+    <Property Type="String" Name="PasswordHash" Nullable="true" />
+    <Property Type="String" Name="SecurityStamp" Nullable="true" />
+    <Property Type="String" Name="PhoneNumber" Nullable="true" />
+    <Property Type="Boolean" Name="PhoneNumberConfirmed" Nullable="false" />
+    <Property Type="Boolean" Name="TwoFactorEnabled" Nullable="false" />
+    <Property Type="DateTime" Name="LockoutEndDateUtc" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="LockoutEnabled" Nullable="false" />
+    <Property Type="Int32" Name="AccessFailedCount" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
   </ComplexType>
 </Schema>
