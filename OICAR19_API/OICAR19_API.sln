@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OICAR19_API", "OICAR19_API\OICAR19_API.csproj", "{5DC5D845-D668-40E7-9DEA-70FA0E663DCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OICAR19_API.Tests", "OICAR19_API.Tests\OICAR19_API.Tests.csproj", "{53B5279C-86BD-4580-B6A2-B597F3E52077}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5DC5D845-D668-40E7-9DEA-70FA0E663DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC5D845-D668-40E7-9DEA-70FA0E663DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC5D845-D668-40E7-9DEA-70FA0E663DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B5279C-86BD-4580-B6A2-B597F3E52077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B5279C-86BD-4580-B6A2-B597F3E52077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B5279C-86BD-4580-B6A2-B597F3E52077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B5279C-86BD-4580-B6A2-B597F3E52077}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

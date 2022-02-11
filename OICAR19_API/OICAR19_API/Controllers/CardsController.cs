@@ -96,9 +96,9 @@ namespace OICAR19_API.Controllers
             {
                 try
                 {
-                    card.FORMAT.IMG1ID = card.FORMAT.IMAGE.IDIMAGE;
-                    card.FORMAT.IMG2ID = card.FORMAT.IMAGE1.IDIMAGE;
-                    card.FORMAT.IMG3ID = card.FORMAT.IMAGE2.IDIMAGE;
+                    card.FORMAT.IMG1ID = card.FORMAT.IMAGE?.IDIMAGE;
+                    card.FORMAT.IMG2ID = card.FORMAT.IMAGE1?.IDIMAGE;
+                    card.FORMAT.IMG3ID = card.FORMAT.IMAGE2?.IDIMAGE;
                     card.FORMAT.IMAGE = null;
                     card.FORMAT.IMAGE1 = null;
                     card.FORMAT.IMAGE2 = null;
@@ -179,9 +179,9 @@ namespace OICAR19_API.Controllers
                     CARD oldCard = db.CARDS.Where(c => c.IDCARD == card.IDCARD).FirstOrDefault();
                     card.FORMATID = oldCard.FORMATID;
                     oldCard.FORMAT.IDFORMAT = oldCard.FORMAT.IDFORMAT;
-                    oldCard.FORMAT.IMG1ID = card.FORMAT.IMAGE.IDIMAGE;
-                    oldCard.FORMAT.IMG2ID = card.FORMAT.IMAGE1.IDIMAGE;
-                    oldCard.FORMAT.IMG3ID = card.FORMAT.IMAGE2.IDIMAGE;
+                    oldCard.FORMAT.IMG1ID = card.FORMAT.IMAGE?.IDIMAGE;
+                    oldCard.FORMAT.IMG2ID = card.FORMAT.IMAGE1?.IDIMAGE;
+                    oldCard.FORMAT.IMG3ID = card.FORMAT.IMAGE2?.IDIMAGE;
                     oldCard.FORMAT.COLOR = card.FORMAT.COLOR;
                     oldCard.FORMAT.FONT_SIZE = card.FORMAT.FONT_SIZE;
                     oldCard.FORMAT.FONT_FORMAT = card.FORMAT.FONT_SIZE;

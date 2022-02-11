@@ -12,6 +12,15 @@ namespace OICAR19_API.Controllers
 {
     public class ImagesController : ApiController
     {
+        private HappyPicturesDbContext_UnitTest DB = new HappyPicturesDbContext();
+        public ImagesController()
+        {
+
+        }
+        public ImagesController(HappyPicturesDbContext_UnitTest context)
+        {
+            DB = context;
+        }
         /// <summary>
         /// This interface returns all public (shared) images
         /// </summary>
@@ -20,20 +29,20 @@ namespace OICAR19_API.Controllers
         [ResponseType(typeof(IMAGE))]
         public IHttpActionResult GetImages()
         {
-            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
-            {
+            //using (HappyPicturesDbContext_UnitTest DB = new HappyPicturesDbContext())
+            //{
                 try
                 {
-                    return Ok(db.IMAGES
-                        .Where(i => i.SHARED.Equals(Status.SHARED))
-                        .ToList());
+                return Ok(DB.Images
+                    .Where(i => i.SHARED.Equals(Status.SHARED))
+                    .ToList());
                 }
                 catch (Exception ex)
                 {
 
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
-            }
+            //}
         }
         /// <summary>
         /// This interface returns all user images
@@ -43,11 +52,11 @@ namespace OICAR19_API.Controllers
         [ResponseType(typeof(IMAGE))]
         public IHttpActionResult GetUserImages(int userId)
         {
-            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
-            {
+            //using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            //{
                 try
                 {
-                    var img = db.IMAGES.Where(i => i.PROFILEID.Equals(userId)).ToList();
+                    var img = DB.Images.Where(i => i.PROFILEID.Equals(userId)).ToList();
                     return Ok(img);
                 }
                 catch (Exception ex)
@@ -55,7 +64,7 @@ namespace OICAR19_API.Controllers
 
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
-            }
+            //}
         }
         /// <summary>
         /// This interface must receive image ID and the image, it will perform an update of the image. If Image does not exist it will not be inserted
@@ -73,12 +82,13 @@ namespace OICAR19_API.Controllers
             {
                 return BadRequest("ID of image not correct");
             }
-            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
-            {
+            //using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            //{
                 try
                 {
-                    db.Entry(image).State = EntityState.Modified;
-                    db.SaveChanges();
+                    //db.Entry(image).State = EntityState.Modified;
+                    //db.SaveChanges();
+                    DB.MarkAsModified(image);
                 }
                 catch (Exception ex)
                 {
@@ -88,8 +98,8 @@ namespace OICAR19_API.Controllers
                     }
                     return Content(HttpStatusCode.BadRequest,ex.Message);
                 }
-                return StatusCode(HttpStatusCode.NoContent);
-            }
+                return Ok();
+            //}
         }
         /// <summary>
         /// This interface receives an image and inserts it in the database.
@@ -109,14 +119,14 @@ namespace OICAR19_API.Controllers
             {
                 try
                 {
-                    db.IMAGES.Add(image);
-                    db.SaveChanges();
+                    DB.Images.Add(image);
+                    DB.SaveChanges();
                 }
                 catch (Exception ex)
                 {
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
-                return Content(HttpStatusCode.Created,new { idImage = image.IDIMAGE });
+                return Content(HttpStatusCode.Created,image);
             }
         }
         /// <summary>
@@ -132,7 +142,7 @@ namespace OICAR19_API.Controllers
             {
                 try
                 {
-                    IMAGE image = db.IMAGES.Find(idImage);
+                    IMAGE image = DB.Images.Find(idImage);
                     if (image == null)
                     {
                         return Content(HttpStatusCode.NotFound, "Image does not exist");
@@ -143,15 +153,15 @@ namespace OICAR19_API.Controllers
                     }
                     if (image.SHARED == Status.NOT_SHARED)
                     {
-                        db.IMAGES.Remove(image);
-                        db.SaveChanges();
+                        DB.Images.Remove(image);
+                        DB.SaveChanges();
                         return Content(HttpStatusCode.OK, "Image deleted");
                     }
                     if (image.SHARED==Status.SHARED)
                     {
                         int adminID = db.GetAdminID(Status.ADMIN_ACCOUNT).FirstOrDefault().GetValueOrDefault();
                         image.PROFILEID = adminID;
-                        db.SaveChanges();
+                        DB.SaveChanges();
                         return Content(HttpStatusCode.OK, "Image is shared, under license agreement deletion is not performed. Owner of Image was changed");
                     }
                 }
@@ -167,7 +177,7 @@ namespace OICAR19_API.Controllers
         {
             using (HappyPicturesDbContext db = new HappyPicturesDbContext())
             {
-                return db.IMAGES.Count(e => e.IDIMAGE == idImage) > 0;
+                return DB.Images.Count(e => e.IDIMAGE == idImage) > 0;
             }
         }
     }

@@ -314,6 +314,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HappyPicturesDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HappyPicturesDbContext_UnitTest.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IMAGE.cs">
       <DependentUpon>HappyPicturesDataModel.tt</DependentUpon>
@@ -441,7 +442,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53449</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44395/</IISUrl>
+          <IISUrl>http://localhost:44397/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

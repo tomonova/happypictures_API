@@ -15,7 +15,7 @@ namespace OICAR19_API.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class HappyPicturesDbContext : DbContext
+    public partial class HappyPicturesDbContext : DbContext, HappyPicturesDbContext_UnitTest
     {
         public HappyPicturesDbContext()
             : base("name=HappyPicturesDbContext")
@@ -37,7 +37,11 @@ namespace OICAR19_API.Models
         public virtual DbSet<STORy> STORIES { get; set; }
         public virtual DbSet<STORY_CARD> STORY_CARD { get; set; }
         public virtual DbSet<TAG> TAGS { get; set; }
-    
+
+        public DbSet<IMAGE> Images { get; set; }
+
+        public DbSet<STORy> Stories { get; set; }
+
         public virtual ObjectResult<CreateUserID_Result> CreateUserID(string email)
         {
             var emailParameter = email != null ?
@@ -103,6 +107,11 @@ namespace OICAR19_API.Models
                 new ObjectParameter("adminAccount", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ShareStory", userIDParameter, storyIDParameter, adminAccountParameter);
+        }
+
+        public void MarkAsModified(IMAGE item)
+        {
+            Entry(item).State = EntityState.Modified;
         }
     }
 }
