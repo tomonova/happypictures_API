@@ -1,17 +1,18 @@
 ﻿using OICAR19_API.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Data.Entity;
 
 namespace OICAR19_API.Controllers
 {
+    [Authorize]
     public class SearchController : ApiController
     {
+        [Authorize]
         /// <summary>
         /// Search Story by single TAG
         /// </summary>

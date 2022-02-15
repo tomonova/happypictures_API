@@ -1,5 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using OICAR19_API.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
@@ -8,19 +15,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Http.ModelBinding;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using OICAR19_API.Models;
-using OICAR19_API.Providers;
-using OICAR19_API.Results;
-using System.Data.Entity;
-using System.Linq;
-using System.Data.SqlClient;
 
 namespace OICAR19_API.Controllers
 {
@@ -30,6 +24,8 @@ namespace OICAR19_API.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private readonly string sasToken = "sv=2020-08-04&ss=bf&srt=co&sp=rwdlacitfx&se=2022-02-28T17:20:54Z&st=2021-12-31T09:20:54Z&spr=https&sig=5FvG2dmnxBii6U7LjFTXYjI%2BH57CVd67MH%2FxeHsj4JQ%3D";
+        private readonly string blobStorage = "https://ojcar2storage2account.blob.core.windows.net/images/%22";
 
         public AccountController()
         {
@@ -177,17 +173,37 @@ namespace OICAR19_API.Controllers
             {
                 try
                 {
+                    var imageList = db.IMAGES.Where(i => i.PROFILEID == profileID).ToList();
+                    foreach (IMAGE item in imageList)
+                    {
+                        await deleteImageFromCloudAsync(item.URL);
+                    }
                     SqlParameter inParm = new SqlParameter("@profileID", profileID);
                     db.Database.ExecuteSqlCommand("exec  DeleteUser @profileID", inParm);
                     db.SaveChanges();
+
                     return Ok();
                 }
                 catch (Exception ex)
                 {
                     return Content(HttpStatusCode.BadRequest, ex.Message);
                 }
+            }
+        }
 
-                return Ok();
+        private async Task deleteImageFromCloudAsync(string uRL)
+        {
+            HttpClient client = new HttpClient();
+            try
+            {
+                client.BaseAddress = new Uri(blobStorage);
+                string[] urlParts = uRL.Split('/');
+                await client.DeleteAsync($"{urlParts[urlParts.Length - 1]}?{sasToken}");
+
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -419,6 +435,7 @@ namespace OICAR19_API.Controllers
                 }
             }
         }
+
         /// <summary>
         /// Register a new account
         /// </summary>

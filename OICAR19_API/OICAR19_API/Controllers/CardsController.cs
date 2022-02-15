@@ -1,18 +1,20 @@
 ﻿using OICAR19_API.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Net;
+using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace OICAR19_API.Controllers
 {
+    [Authorize]
     public class CardsController : ApiController
     {
+        [Authorize]
+        
         /// <summary>
         /// This interface returns all users cards and public(shared) cards
         /// </summary>
@@ -193,9 +195,56 @@ namespace OICAR19_API.Controllers
                         oldCard.PROFILEID = profile.IDPROFILE;
                         oldCard.SHARED = 1;
                     }
+                    SqlParameter cardID = new SqlParameter("@cardID", card.IDCARD);
+                    db.Database.ExecuteSqlCommand("exec DeleteCardTags @cardID", cardID);
                     oldCard.TAGS = card.TAGS;
                     oldCard.NAME = card.NAME;
                     db.Entry(oldCard).State=EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return Content(HttpStatusCode.BadRequest, ex.Message);
+                }
+                return Ok();
+            }
+        }
+        /// <summary>
+        /// Manage cards of a story
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("api/Cards/ManageStoryCards")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult ManageStoryCards(int storyId, List<CARD> storyCards)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            using (HappyPicturesDbContext db = new HappyPicturesDbContext())
+            {
+                int cardOrder = 1;
+                try
+                {
+                    STORy story = db.STORIES.Where(s => s.IDSTORY == storyId).FirstOrDefault();
+                    if (story==null || story.SHARED==Status.SHARED)
+                    {
+                        return Content(HttpStatusCode.BadRequest, "You can't edit shared story or the story doesn't exist");
+                    }
+                    var cards_story = db.STORY_CARD.Where(sc => sc.STORYID == storyId);
+                    db.STORY_CARD.RemoveRange(cards_story);
+                    foreach (var item in storyCards)
+                    {
+                        STORY_CARD sc = new STORY_CARD
+                        {
+                            STORYID = storyId,
+                            CARDID = item.IDCARD,
+                            CARD_ORDER = cardOrder
+                        };
+                        cardOrder++;
+                        db.STORY_CARD.Add(sc);
+                    }
                     db.SaveChanges();
                 }
                 catch (Exception ex)

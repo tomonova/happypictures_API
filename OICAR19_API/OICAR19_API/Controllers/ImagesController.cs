@@ -1,17 +1,17 @@
 ﻿using OICAR19_API.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace OICAR19_API.Controllers
 {
+    [Authorize]
     public class ImagesController : ApiController
     {
+        [Authorize]
         /// <summary>
         /// This interface returns all public (shared) images
         /// </summary>
@@ -88,7 +88,7 @@ namespace OICAR19_API.Controllers
                     }
                     return Content(HttpStatusCode.BadRequest,ex.Message);
                 }
-                return StatusCode(HttpStatusCode.NoContent);
+                return StatusCode(HttpStatusCode.OK);
             }
         }
         /// <summary>

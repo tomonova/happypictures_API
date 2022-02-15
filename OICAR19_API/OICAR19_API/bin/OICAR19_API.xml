@@ -515,11 +515,6 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:OICAR19_API.Controllers.CardsController.GetCards(System.Int32)">
-            <summary>
-            This interface returns all users cards and public(shared) cards
-            </summary>
-        </member>
         <member name="M:OICAR19_API.Controllers.CardsController.GetStoryCards(System.Int32)">
             <summary>
             This endpoint will return cards of a story with their respective order in the story.
@@ -549,10 +544,11 @@
             <param name="card"></param>
             <returns></returns>
         </member>
-        <member name="M:OICAR19_API.Controllers.ImagesController.GetImages">
+        <member name="M:OICAR19_API.Controllers.CardsController.ManageStoryCards(System.Int32,System.Collections.Generic.List{OICAR19_API.Models.CARD})">
             <summary>
-            This interface returns all public (shared) images
+            Manage cards of a story
             </summary>
+            <returns></returns>
         </member>
         <member name="M:OICAR19_API.Controllers.ImagesController.GetUserImages(System.Int32)">
             <summary>
@@ -575,11 +571,6 @@
             <summary>
             This interface receives id of an image and trys to delete it.
             If Image wass shared, as agreed by license agreement it will not be deleted, it is transfered to Happy Pictures account and will remain shared
-            </summary>
-        </member>
-        <member name="T:OICAR19_API.Controllers.ScheduleController">
-            <summary>
-            Controler for schedule management
             </summary>
         </member>
         <member name="M:OICAR19_API.Controllers.ScheduleController.GetSchedule(System.Int32,System.DateTime)">
@@ -610,14 +601,6 @@
             Delete a schedule
             </summary>
             <param name="idSchedule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryByTag(System.String,System.Int32)">
-            <summary>
-            Search Story by single TAG
-            </summary>
-            <param name="tag"></param>
-            <param name="userID"></param>
             <returns></returns>
         </member>
         <member name="M:OICAR19_API.Controllers.SearchController.SearchCardByTag(System.String,System.Int32)">
@@ -677,7 +660,7 @@
             <param name="status"></param>
             <returns></returns>
         </member>
-        <member name="M:OICAR19_API.Controllers.StoryController.UpdateImage(System.Int32,OICAR19_API.Models.STORy)">
+        <member name="M:OICAR19_API.Controllers.StoryController.UpdateStory(System.Int32,OICAR19_API.Models.STORy)">
             <summary>
             This interface must receive  user ID and the story, it will perform an update of the story.
             </summary>

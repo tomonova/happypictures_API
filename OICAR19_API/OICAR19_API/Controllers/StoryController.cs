@@ -14,8 +14,10 @@ namespace OICAR19_API.Controllers
     /// <summary>
     /// Controller that returns all story related entities
     /// </summary>
+    [Authorize]
     public class StoryController : ApiController
     {
+
         /// <summary>
         /// This interface returns popular public stories which are not created by user
         /// </summary>
@@ -203,7 +205,7 @@ namespace OICAR19_API.Controllers
         [HttpPut]
         [Route("api/Story/UpdateStory")]
         [ResponseType(typeof(void))]
-        public IHttpActionResult UpdateImage(int userID, STORy story)
+        public IHttpActionResult UpdateStory(int userID, STORy story)
         {
             if (!ModelState.IsValid)
             {
@@ -230,20 +232,20 @@ namespace OICAR19_API.Controllers
                     {
                         oldStory.THUMBNAIL = story.IMAGE.IDIMAGE;
                     }
+                    SqlParameter profileID = new SqlParameter("@profileID", userID);
+                    SqlParameter storyID = new SqlParameter("@storyID", story.IDSTORY);
+                    SqlParameter admin = new SqlParameter("admin", Status.ADMIN_ACCOUNT);
+                    db.Database.ExecuteSqlCommand("exec DeleteStoryTags @storyID", storyID);
                     oldStory.STORY_CARD = story.STORY_CARD;
                     oldStory.TAGS = story.TAGS;
                     oldStory.NAME = story.NAME;
                     oldStory.DESCRIPTION = story.DESCRIPTION;
-                    if (story.SHARED==Status.SHARED)
-                    {
-                        SqlParameter profileID = new SqlParameter("@profileID", userID);
-                        SqlParameter storyID = new SqlParameter("@storyID", story.IDSTORY);
-
-                        db.Database.ExecuteSqlCommand("exec ShareStory @profileID, @storyID,@admin", profileID, storyID,Status.ADMIN_ACCOUNT);
-                    }
-
                     db.Entry(oldStory).State = EntityState.Modified; ;
                     db.SaveChanges();
+                    if (story.SHARED == Status.SHARED)
+                    {
+                        db.Database.ExecuteSqlCommand("exec ShareStory @profileID, @storyID,@admin", profileID, storyID, admin);
+                    }
                 }
                 catch (Exception ex)
                 {

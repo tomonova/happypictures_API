@@ -1,17 +1,14 @@
 ﻿using OICAR19_API.Models;
 using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Data.Entity;
-using Swashbuckle.Examples;
-using Swashbuckle.Swagger.Annotations;
 
 namespace OICAR19_API.Controllers
 {
+    [Authorize]
     /// <summary>
     /// Controler for schedule management
     /// </summary>

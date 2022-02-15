@@ -414,3 +414,18 @@ BEGIN
 		) and img3id is not null
 	)
 END
+go
+create or alter proc DeleteStoryTags
+@storyID INT
+aS
+delete from TAG_STORY
+where STORYID=@storyID
+exec DeleteUnassignedTags
+go
+create or alter proc DeleteCardTags
+@cardID INT
+as 
+delete from TAG_CARD
+where CARDID=@cardID
+exec DeleteUnassignedTags
+go
