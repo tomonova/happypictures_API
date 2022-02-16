@@ -1,0 +1,15 @@
+<div class="headerHolder">
+    <div class="header">
+        <img class="logo" style="cursor: pointer;" src="../../../assets/images/logo.png" alt="" (click)="router.navigateByUrl('home')">
+        <div class="menu">
+            <div class="menu_item" (click)="router.navigateByUrl('card-maker')"><p>CARD MAKER</p></div>
+            <div class="menu_item" (click)="router.navigateByUrl('story-maker')"><p>STORY MAKER</p></div>
+            <div class="menu_item" (click)="router.navigateByUrl('picture-gallery')"><p>PICTURE GALLERY</p></div>
+            <div class="menu_item" (click)="router.navigateByUrl('scheduler')"><p>SCHEDULER</p></div>
+            <div class="profile_holder">
+                <p>{{user.first_name}} {{user.last_name}}</p>
+                <img src="../../../assets/images/perica.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>

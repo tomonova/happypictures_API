@@ -1,0 +1,18 @@
+<div class="stories-list" [style.height]="height">
+    <div class="btn" [ngClass]="!canBack?'disabled':''"  (click)="backClick()">
+        <img src="../../../assets/images/next_ico.svg" alt="" style="transform: rotate(180deg);">
+    </div>
+    <div class="stories">
+        <div class="new-story" (click)="newStory()" [ngClass]="clickedStoryID==-1?'clicked':''" *ngIf="addable">
+            <p style="font-size: 2.5em;">+</p>
+            <p>ADD NEW STORY</p>
+        </div>
+        <div class="story" *ngFor="let st of stories" (click)="storyClicked(st)" [ngClass]="clickedStoryID==st.IDSTORY?'clicked':''" >
+            <p>{{st.NAME}}</p>
+            <img [src]="st.IMAGE.URL">
+        </div>
+    </div>
+    <div class="btn" [ngClass]="!canFront?'disabled':''" (click)="nextClick()">
+        <img src="../../../assets/images/next_ico.svg" alt="">
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="story-viewer">
+    <div class="topPart"></div>
+    <div class="cards">
+        <div class="act prev"  [class]="canBefore?'':'disabled'" (click)="prev()">
+            <img src="../../../assets/images/back_arrow.svg" alt="">
+        </div>
+        <div class="card">
+            <div class="text" [class]="currentCard.FORMAT.FONT_FORMAT==2?'bolded':''" ><p>{{currentCard.TEXT}}</p></div>
+            <div class="images">
+                <img [src]="currentCard.FORMAT.IMAGE1.URL" alt="" *ngIf="currentCard.FORMAT.IMAGE1 != null">
+                <img [src]="currentCard.FORMAT.IMAGE2.URL" alt="" *ngIf="currentCard.FORMAT.IMAGE2 != null">
+                <img [src]="currentCard.FORMAT.IMAGE3.URL" alt="" *ngIf="currentCard.FORMAT.IMAGE3 != null">
+            </div>
+        </div>
+        <div class="act next" [class]="canNext?'':'disabled'" (click)="next()">
+            <img src="../../../assets/images/back_arrow.svg" alt="" (click)="next()">
+        </div>
+    </div>
+</div>

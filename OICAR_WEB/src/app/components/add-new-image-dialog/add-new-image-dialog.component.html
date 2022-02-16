@@ -1,0 +1,25 @@
+<div class="whole_view">
+    <div class="top_bar" style="margin-bottom:1.5em;">
+        <input type="file" accept="image/*" #file (change)="fileSelected($event)" style="display: none;">
+        <h1>Choose picture:</h1>
+        <div class="actions">
+            <button class="done" (click)="deleteImage()" [ngClass]="selectedImgID==-1?'disabled':''"><p>DELETE IMAGE</p></button>
+            <button class="add-new" (click)="file.click()">
+                <img src="../../../assets/images/add_ico.svg" alt="">
+                <p>IMPORT NEW IMAGE</p>
+            </button>
+            
+        </div>
+    </div>
+    <div class="image-list">
+        <div class="image" *ngFor="let img of allImages" (click)="clickedImage(img)" [ngClass]="selectedImgID==img.IDIMAGE?'selected':''">
+            <img [src]="img.URL" alt="">
+        </div>
+        <div class="no-images" *ngIf="allImages.length==0 && !loading">
+            <p>NO UPLOADED IMAGES</p>
+        </div>
+        <div class="loadingHolder" *ngIf="loading">
+            <div class="lds-ripple"><div></div><div></div></div>
+        </div>
+    </div>
+</div>

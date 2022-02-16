@@ -1,0 +1,83 @@
+.wholeBody{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.9em;
+    background: rgba(15, 4, 75, 0.075);
+    border-radius: 0.3em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+.imageHolder{
+    display: flex;
+    flex-direction: column;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 0.3em;
+    background: #fff;
+    position: relative;
+    border-radius: 0.3em;
+    overflow: hidden;
+    box-shadow: 0px 6px 10px rgba(0, 26, 73, 0.12);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.imageHolder img{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.imageHolder #gradient{
+    z-index: 5;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0,17,79,0.6) 0%, rgba(0,17,78,0) 90%);
+}
+.imageHolder:hover{
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0px 8px 18px rgba(0, 26, 73, 0.22);
+}
+.imageHolder .text{
+    position: absolute;
+    width: 6rem;
+    overflow:hidden;
+    left: 0.5em;
+    bottom: 0.5em;
+    color: #fff;
+    font-size: 0.9em;
+    z-index: 10;
+    max-lines: 1;
+    
+}
+.imageHolder .text p{
+    text-overflow: ellipsis;
+    max-lines: 1;
+    white-space: nowrap;
+    width: 100%;
+    font-weight: 500;
+    text-shadow: 0px 3px 8px rgba(0, 18, 41, 0.226);
+}
+.new-card{
+    background: rgb(47, 37, 175);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em;
+    box-sizing: border-box;
+}
+.new-card p{
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9em;
+}

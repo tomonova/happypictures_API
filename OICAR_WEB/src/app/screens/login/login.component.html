@@ -1,0 +1,98 @@
+<div class="component_body">
+         <div class="login_holder shadow-l-dblue">
+      <mat-tab-group class="invisible-tabs" dynamicHeight [(selectedIndex)]="currTabIndex">
+        <mat-tab label="">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="title">
+                <img src="../../assets/images/logo.png"/>
+                <h4>Log in with your account</h4>
+            </div>
+            
+            <mat-error *ngIf="loginInvalid" style="margin-bottom: 0.2em; font-size: 0.8em;">
+              The username and password were not recognized
+            </mat-error>
+            <mat-form-field class="full-width-input" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Your e-mail" formControlName="username" required>
+              <mat-error>
+                Please provide a valid email address
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Password" formControlName="password" required>
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [ngClass]="loading? 'disabled':''" >Log in <div class="loaderHolder" *ngIf="loading"><div class="loader"></div></div></button>
+            <p class="register_txt">Dont have HappyPix account? <span class="clickable_txt" (click)="createNewAcc()"> Register new Account</span></p>
+        </form>
+        </mat-tab>
+        <mat-tab label="">
+          <div class="registerView">
+            <div class="topBar">
+              <div class="left" (click)="backToLoginClick()">
+                <img src="../../assets/images/back_arrow.svg"/>
+                <p>RETURN TO LOGIN</p>
+              </div>
+              <div class="right">
+                <img src="../../assets/images/logo.png"/>
+              </div>
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+              <div class="title">
+                  <h4>Register for your new account:</h4>
+              </div>
+              <mat-error *ngIf="loginInvalid">
+                The username and password were not recognized
+              </mat-error>
+              <mat-form-field class="full-width-input" appearance="fill">
+                <mat-label>Your E-Mail</mat-label>
+                <input matInput placeholder="Email" formControlName="username" required>
+                <mat-error>
+                  Please provide a valid email address
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input" appearance="fill">
+                <mat-label>Your Password</mat-label>
+                <input matInput type="password" placeholder="Password" formControlName="password" required>
+                <mat-error>
+                  Please provide a valid password
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input" appearance="fill">
+                <mat-label>Repeated password</mat-label>
+                <input matInput type="password" placeholder="Repeated password" formControlName="passwordRep" required>
+                <mat-error>
+                  Please provide a valid password
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input" appearance="fill">
+                <mat-label>Your Name</mat-label>
+                <input matInput placeholder="Your Name" formControlName="name" required>
+                <mat-error>
+                  Please provide a valid name
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input" appearance="fill">
+                <mat-label>Your Surname</mat-label>
+                <input matInput placeholder="Your Name" formControlName="surname" required>
+                <mat-error>
+                  Please provide a valid surname
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width-input" appearance="fill">
+                <mat-label>Your Nickname</mat-label>
+                <input matInput placeholder="Your Name" formControlName="nickname" required>
+                <mat-error>
+                  Please provide a valid nickname
+                </mat-error>
+              </mat-form-field>
+              <button mat-raised-button color="primary" [ngClass]="loading? 'disabled':''" >Register my account<div class="loaderHolder" *ngIf="loading"><div class="loader"></div></div></button>
+          </form>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+</div>

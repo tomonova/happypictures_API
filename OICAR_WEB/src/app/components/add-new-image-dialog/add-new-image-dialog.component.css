@@ -1,0 +1,118 @@
+.whole-dialog{
+    width: 55em;
+    height: 35em;
+    display: flex;
+    flex-direction: column;
+}
+.top-options{
+    width: 100%;
+    height: 6em;
+}
+.image-list{
+    display: flex;
+    padding: 0.5em;
+    position: relative;
+    flex-direction: row;
+    gap:0.5em;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: rgb(238, 231, 241);
+    align-content: flex-start;
+    border-radius: 0.5em;
+    height: 29em;
+    overflow-y: scroll;
+}
+.image-list img{
+    width: 6em;
+    height: 6em;
+    background-size: contain;
+    background-color: white;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 0.3em;
+}
+.image-list .selected img{
+    border: 2px solid blue;
+}
+.no-images{
+    width: 100%;
+    height: 100%;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.no-images p{
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 1.5em;
+    color: rgb(51, 0, 133);
+}
+.add-new{
+    display: flex;
+    flex-direction: row;
+    background: rgb(166, 241, 216);
+    padding: 0.8em 2em;
+    align-items: center;
+    border:none;
+    border-radius: 0.3em;
+    transition: all 0.2s ease-in-out;
+}
+.add-new:hover{
+    background: rgb(117, 202, 174);
+    transform: translateY(-2px);
+}
+.add-new img{
+    width: 1.2em;
+    margin-right: 0.4em;
+    filter: invert(16%) sepia(14%) saturate(3496%) hue-rotate(116deg) brightness(90%) contrast(103%);
+}
+.add-new p{
+    font-size: 1.1em;
+    font-weight: 700;
+    color: rgb(0, 44, 22);
+
+}
+.whole_view{
+    width: 60em;
+    height: 35em;
+    padding: 1.5em;
+}
+.top_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.actions{
+    display: flex;
+    flex-direction: row;
+}
+.top_bar button{
+    padding: 0.9em 2em;
+    border-radius: 0.3em;
+    border:0px;
+    background:rgb(238, 238, 238);
+    font-size: 0.9em;
+    font-weight: 500;
+    color: darkblue;
+    letter-spacing: 1px;
+    margin-left: 1.5em;
+    transition: 0.2s ease-in-out all;
+    cursor: pointer;
+}
+.top_bar button.done{
+    background:rgb(248, 199, 210);
+    color: rgb(49, 0, 16);
+}
+.top_bar button:hover{
+    background:rgb(218, 218, 218);
+}
+.top_bar button.done:hover{
+    background:rgb(247, 166, 177);
+}
+.top_bar button.disabled{
+    opacity: 0.2;
+    pointer-events: none;
+}

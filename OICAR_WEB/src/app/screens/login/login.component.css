@@ -1,0 +1,145 @@
+.component_body{
+    min-height: 100vh;
+    justify-content: center;
+    background-color: #e5e5f7;
+    opacity: 1;
+    padding-top: 0em;
+    background-image: radial-gradient(#0b0062 0.5px, #e5e5f7 0.5px);
+    background-size: 10px 10px;;
+}
+.inner_center{
+    max-width: 680px;
+    min-height: 30em;
+    background: #fff;
+    border-radius: 0.4em;
+    box-shadow: 0px 18px 35px rgba(0, 0, 68, 0.137);
+    padding: 2.5em;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+}
+.inner_center img{
+    width: 20em;
+    margin-bottom: 3em;
+}
+.login_page{
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #DDE1E7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e5e5f7;
+opacity: 0.8;
+background-image: radial-gradient(#444cf7 0.4px, #e5e5f7 0.4px);
+background-size: 8px 8px;
+}
+.login_holder{
+    display: flex;
+    background: #f4f4f8;
+    flex-direction: column;
+    min-width: 45em;
+    padding: 1.5em;
+    box-sizing: border-box;
+    min-height: 32em;
+    border-radius: 0.3em;
+    border-top: 3px solid #444cf7;
+}
+.login_holder form{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.full-width-input{
+    min-width: 34em;
+    width: fit-content;
+}
+.title{
+    text-align: center;
+    margin: 1.5em;
+}
+.title h4{
+    margin-top: 1em;
+    font-size: 0.85em;
+    font-weight: 300;
+    color:#0b16e7;
+}
+.title img{
+    width: 25em;
+}
+button{
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    cursor: pointer;
+    padding: 0.6em 3em;
+    background: #0b16e7;
+    color: #fff;
+    border:none;
+    font-size: 1.1em;
+    border-radius: 0.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1em;
+    font-family: "Poppins" !important;
+}
+button:hover{
+    background: #1a25fc;
+    transform: translateY(-1px);
+    box-shadow: 0px 4px 12px #0f131a2f;
+}
+button.disabled{
+    pointer-events: none;
+    background: #64646b;
+    cursor: auto;
+    color: #64646b;
+}
+.register_txt{
+    margin-top: 1.5em;
+    font-size: 0.9em;
+}
+.clickable_txt{
+    margin-left: 0.5em;
+    color: #0b16e7;
+    cursor: pointer;
+}
+.clickable_txt:hover{
+    color: #0F131A;
+    text-decoration: underline;
+}
+.registerView{
+    height: 40em;
+}
+.topBar{
+    width: 100%;
+    display: flex;
+    padding-top: 0.3em;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.left{
+    display: flex;
+    flex-direction: row;
+    color: #0F131A;
+    align-items: center;
+    padding: 0.1em 1em 0.0em 0.4em;
+}
+.left:hover{
+    background: #e5e5f7;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+.left p{
+    font-weight: 700;
+    font-size: 0.9em;
+    margin-left: 0.7em;
+}
+.left img{
+    width: 1.1em;
+}
+.right img{
+    width: 7em;
+    margin-right: 1em;
+}

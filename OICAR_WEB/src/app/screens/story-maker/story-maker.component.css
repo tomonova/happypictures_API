@@ -1,0 +1,129 @@
+app-stories-list{
+    width: 100%;
+    max-width: 1280px;
+}
+.maker{
+    display: flex;
+    position: relative;
+    margin-top: 1.5em;
+    width: 100%;
+    height: 70em;
+    background: rgba(16, 0, 73, 0.082);
+    border-radius: 0.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+.left{
+    margin-right: 0.5em;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.356);
+    border-radius: 0.4em;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.right{
+    width: 20%;
+    background: rgba(255, 255, 255, 0.356);
+    border-radius: 0.4em;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0.5em;
+    flex-direction: column;
+}
+.right .btn{
+    width: 100%;
+    margin-bottom: 0.5em;
+    border-radius: 0.3em;
+    border:none;
+    padding: 1em;
+    cursor: pointer;
+    
+}
+.right .btn p{
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.right .btn:hover{
+    background: white;
+}
+.right .btn.disabled{
+    opacity: 0.2;
+    pointer-events: none;
+}
+.card-list{
+    height: 9em;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    align-items: center;
+    padding-left: 0.3em;
+    gap: 1em;
+}
+.card-holder{
+    width: 7em;
+    height: 7em;
+    border-radius: 0.3em;
+    overflow: hidden;
+    min-width: 7em;
+    position: relative;
+}
+.card-holder img{
+    width: 7em;
+    height: 7em;
+}
+.card-holder p{
+    position: absolute;
+    width: 7em;
+    bottom: 0px;
+    padding: 0.5em;
+    box-sizing: border-box;
+    white-space: nowrap;
+    left: 0px;
+    right: 0px;
+    background: rgba(22, 0, 51, 0.444);
+    color: white;
+}
+.image-choose{
+    width: 8em;
+    align-self: center;
+    height: 8em;
+    background: rgba(255, 255, 255, 0.384);
+    border-radius: 0.3em;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.image-choose:hover{
+    background: white;
+}
+.image-choose img{
+    width: 8em;
+    height: 8em;
+}
+.image-choose #temp{
+    width: 3em;
+    height: 3em;
+}
+.delete-img{
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 1em;
+    background: crimson;
+    box-shadow: 0px 5px 10px rgba(220, 20, 60, 0.158);
+    font-size: 1.1em;
+    transform: rotate(45deg);
+    font-weight: 600;
+    color: #fff;
+    border: none;
+}
+.delete-img:hover{
+    cursor: pointer;
+    background: rgb(175, 14, 46);
+}

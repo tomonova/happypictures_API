@@ -1,0 +1,108 @@
+.stories-list{
+    background: rgba(255, 255, 255, 0.514);
+    border-radius: 0.3em;
+    padding: 0.7em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.7em;
+    align-items: center;
+    width: 100%;
+    box-shadow: 0px 12px 30px rgba(15, 0, 68, 0.056);
+}
+.stories{
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    gap: 0.7em;
+    flex-wrap: wrap;
+}
+.story{
+    height: 8.35em;
+    width: 8.35em;
+    overflow:hidden;
+    border-radius: 0.4em;
+    background: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: ease-in-out all 0.2s;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+}
+
+.story:hover{
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 18px rgba(15, 1, 75, 0.116);
+}
+.story img{
+    height: 8.4em;
+    width: 8.4em;
+    background-size: cover;
+}
+.story p{
+    position: absolute;
+    bottom: 0em;
+    left: 0em;
+    right: 0em;
+    padding: 0.5em;
+    background:rgba(28, 0, 92, 0.432);
+    border-radius: 0.4em;
+    font-size: 0.85em;
+    color: #fff;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+}
+.btn{
+    width: 2.5em;
+    background: rgb(223, 216, 235);
+    border-radius: 0.2em;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out all;
+    cursor: pointer;
+}
+.btn:hover{
+    transform:translateY(-2px);
+    background: rgb(209, 199, 226);
+}
+.btn.disabled{
+    background: rgb(230, 230, 230);
+    opacity: 0.3;
+    pointer-events: none;
+}
+.btn img{
+    width: 1.3em;
+    filter: invert(10%) brightness(130%);
+}
+.new-story{
+    background: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em;
+    box-sizing: border-box;
+    height: 8.4em;
+    display: flex;
+    flex-direction: column;
+    width: 8.4em;
+    border-radius: 0.5em;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: ease-in-out all 0.2s;
+}
+.new-story p{
+    text-align: center;
+    color: rgb(48, 0, 179);
+    font-weight: 700;
+    font-size: 0.9em;
+}
+.new-story:hover{
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 18px rgba(15, 1, 75, 0.116);
+}
+.clicked{
+    border: 3px solid rgba(98, 0, 255, 0.842);
+}

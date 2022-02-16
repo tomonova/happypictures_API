@@ -1,0 +1,57 @@
+.headerHolder{
+    width: 100%;
+    background: #f4f4f8;
+    height: 6em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0px 8px 30px #0b006225;
+}
+.header{
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    width: 20em;
+    filter: drop-shadow(0px 5px 10px rgb(255, 255, 255));
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+}
+.menu_item{
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    color: #0b0062;
+    font-size: 0.95em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu_item:hover{
+    color: #452ef7;
+    transform: translateY(-2px);
+}
+.profile_holder{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.profile_holder img{
+    width: 3em;
+    border-radius: 1.5em;
+    margin-left: 1em;
+}

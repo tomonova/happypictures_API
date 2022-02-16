@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="component_body">
+    <div class="scheduler_body">
+        <button class="edit" *ngIf="!isEditing" (click)="isEditing= !isEditing"><p>EDIT SCHEDULE</p></button>
+        <button class="edit save" *ngIf="isEditing" (click)="saveChanges()"><p>SAVE CHANGES</p></button>
+        <div class="table">
+            <div class="column" *ngFor="let day of days;let index=index">
+               
+                    <p class="dayTitle">{{day}}</p>
+                    <div class="holder" *ngIf="scheduledImages[index].SCHEDULE_IMAGE != undefined">
+                    <div class="image" *ngFor="let image of scheduledImages[index].SCHEDULE_IMAGE">
+                        <img [src]="image.IMAGE.URL" alt="">
+                        <div class="delete" *ngIf="isEditing" (click)="removePhotoFromScheduler(index,image.IMAGEID)">
+                            <img src="../../../assets/images/delete_ico.svg" alt="">
+                        </div>
+                    </div>
+                    </div>  
+                    <div class="image add" *ngIf="isEditing" (click)="addScheduler(index)">
+                        <img src="../../../assets/images/add_ico.svg" alt="">
+                        <p>ADD NEW</p>
+                    </div>
+               
+               
+            </div>
+            <div class="loadingHolder" *ngIf="loading">
+                <div class="lds-ripple"><div></div><div></div></div>
+            </div>
+        </div>
+       
+    </div>
+</div>

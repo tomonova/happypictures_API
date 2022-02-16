@@ -1,0 +1,4 @@
+<div class="component_body">
+    <app-card-viewer  [card]="clickedCard" [currCreating]="currCreating" style="width: 100%; max-width: 1280px;" (cardEdited)="cardEdited($event)" (cardDeleted)="cardDeleted($event)"></app-card-viewer>
+    <app-card-list style="width: 100%; max-width: 1280px;" (cardClicked)="cardSelected($event)" [changedCard]="editedCard" [deletedCard]="deletedCard"></app-card-list>
+</div>
