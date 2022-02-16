@@ -1,0 +1,78 @@
+<div class="card-viewer" *ngIf="card">
+
+    <div class="text-part">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Vaš tekst</mat-label>
+            <textarea matInput class="inputic"
+                      cdkTextareaAutosize
+                      #autosize="cdkTextareaAutosize"
+                      cdkAutosizeMinRows="1"
+                      placeholder="Npr. Nebo je plavo"
+                      cdkAutosizeMaxRows="2" [ngClass]="card.FORMAT.FONT_FORMAT==2?'bolded':''" [ngModel]="card.TEXT" (ngModelChange)="textChanged($event)"></textarea>
+          </mat-form-field>
+    </div>
+    <div class="images">
+        <div class="image" *ngIf="card.FORMAT.IMAGE1 != null">
+            <img [src]="card.FORMAT.IMAGE1.URL" alt="">
+            <button class="delete-img" (click)="removeImage(1)">+</button>
+        </div>
+        <div class="image-adder" *ngIf="card.FORMAT.IMAGE1 == null" (click)="imageAdd(1)">
+            <p>ADD</p>
+        </div>
+        <div class="image" *ngIf="card.FORMAT.IMAGE2 != null">
+            <img [src]="card.FORMAT.IMAGE2.URL" alt="">
+            <button class="delete-img" (click)="removeImage(2)">+</button>
+        </div>
+        <div class="image-adder" *ngIf="card.FORMAT.IMAGE2 == null" (click)="imageAdd(2)">
+            <p>ADD</p>
+            
+        </div>
+        <div class="image" *ngIf="card.FORMAT.IMAGE3 != null">
+            <img [src]="card.FORMAT.IMAGE3.URL" alt="">
+            <button class="delete-img" (click)="removeImage(3)">+</button>
+        </div>
+        <div class="image-adder" *ngIf="card.FORMAT.IMAGE3 == null" (click)="imageAdd(3)">
+            <p>ADD</p>
+        </div>
+    </div>
+    <div class="editor">
+        <div class="text-changers">
+            <div class="bold" (click)="toggleBold()" [ngClass]="card.FORMAT.FONT_FORMAT==2?'active':''">
+                <img src="../../../assets/images/bold_ico.svg"  alt="">
+            </div>
+            <div class="sizes">
+                
+            </div>
+           
+        </div>
+        <div class="tags" style="font-size: 15px">
+            <mat-form-field appearance="fill" class="tags-input">
+                <mat-label>Tags</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          placeholder="Card name"
+                          cdkAutosizeMaxRows="1" [value]="getTags(card.TAGS)" (input)="tagsChanged($event)"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="name" style="font-size: 15px">
+            <mat-form-field appearance="fill" class="name-input">
+                <mat-label>Card Name</mat-label>
+                <textarea matInput
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="1"
+                          placeholder="Card name"
+                          cdkAutosizeMaxRows="1" [ngModel]="card.NAME" (ngModelChange)="nameChanged($event)"></textarea>
+              </mat-form-field>
+        </div>
+        <div class="save-part">
+            	<button class="saveBtn" [disabled]="!changesMade" (click)="saveCard()">SAVE</button>
+                <button class="deleteBtn"  (click)="deleteCard()" *ngIf="card.PROFILEID == user.id">DELETE</button>
+        </div>
+    </div>
+    <div class="loadingHolder" *ngIf="loading">
+        <div class="lds-ripple"><div></div><div></div></div>
+    </div>
+</div>

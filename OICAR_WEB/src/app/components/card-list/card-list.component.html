@@ -1,0 +1,13 @@
+<div class="wholeBody">
+    <div class="imageHolder new-card" (click)="cardChosen('0')" *ngIf="addable">
+        <p>+</p>
+        <p>ADD NEW CARD</p>
+    </div>
+    <div class="imageHolder" *ngFor="let card of allCards" (click)="cardChosen(card)">
+        <img [src]="card.FORMAT.IMAGE1.URL" alt="">
+        <div id="gradient"></div>
+        <div class="text">
+            <p>{{card.TEXT}}</p>
+        </div>
+    </div>
+</div>

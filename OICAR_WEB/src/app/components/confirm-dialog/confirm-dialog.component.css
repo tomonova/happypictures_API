@@ -1,0 +1,35 @@
+.dialog{
+    width: 30em;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+h1{
+    margin-bottom: 1em;
+}
+button{
+    padding: 1em 2.8em;
+    margin-left: 0.8em;
+    border-radius: 0.4em;
+    margin-bottom: 0em;
+    background: #d3d3d3;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+}
+.cnfrm{
+    background: rgb(255, 149, 149);
+}
+button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.082);
+    filter: saturate(140%) brightness(90%) contrast(120%);
+}

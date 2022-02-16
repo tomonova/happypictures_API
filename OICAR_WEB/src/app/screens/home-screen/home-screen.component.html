@@ -1,0 +1,11 @@
+<div class="component_body" style="padding-top: 8em;">
+    <div class="inner" style="display: flex;flex-direction: column; width: 100%; max-width: 1280px;">
+        <h2 style="color: rgb(20, 0, 75); margin-bottom: 0.6em;">Discover Stories</h2>
+        <app-stories-list rows=1 [stories]="currentDiscoveredStories" [startIndex]="currDiscIndex" [fullSize]="discoveredStories.length" (backClicked)="back('disc')" (nextClicked)="next('disc')" (storySelected)="openStory($event)"></app-stories-list>
+        <h2 style="color: rgb(20, 0, 75); margin-bottom: 0.6em; margin-top: 1.2em;">Favourite Stories</h2>
+        <app-stories-list rows=1 [stories]="currentFavouriteStories" [startIndex]="currFavIndex" [fullSize]="favouriteStories.length" (backClicked)="back('fav')" (nextClicked)="next('fav')" (storySelected)="openStory($event)"></app-stories-list>
+        <h2 style="color: rgb(20, 0, 75); margin-bottom: 0.6em; margin-top: 1.2em;">My Stories</h2>
+        <app-stories-list rows=1 [stories]="currentMyStories" [startIndex]="currMyIndex" [fullSize]="myStories.length" (backClicked)="back('my')" (nextClicked)="next('my')" (storySelected)="openStory($event)"></app-stories-list>
+    
+    </div>
+</div>

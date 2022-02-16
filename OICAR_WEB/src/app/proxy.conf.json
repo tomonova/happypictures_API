@@ -1,0 +1,26 @@
+{
+    "/api": {
+      "target": "https://happypicturesapi.azurewebsites.net/api",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    },
+    "/token": {
+        "target": "https://happypicturesapi.azurewebsites.net/token",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+          "^/token": ""
+        }
+      },
+      "/images/": {
+        "target": "https://ojcar2storage2account.blob.core.windows.net/images/",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+          "^/images/": ""
+        }
+      }
+}

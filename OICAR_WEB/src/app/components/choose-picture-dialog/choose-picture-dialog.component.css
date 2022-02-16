@@ -1,0 +1,34 @@
+.whole_view{
+    width: 60em;
+    height: 35em;
+    overflow-y: scroll;
+    padding: 1.5em;
+}
+.top_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.top_bar button{
+    padding: 0.9em 2em;
+    border-radius: 0.3em;
+    border:0px;
+    background:rgb(238, 238, 238);
+    font-size: 0.9em;
+    font-weight: 500;
+    color: darkblue;
+    letter-spacing: 1px;
+    margin-left: 1.5em;
+    transition: 0.2s ease-in-out all;
+    cursor: pointer;
+}
+.top_bar button.done{
+    background:rgb(199, 248, 221);
+}
+.top_bar button:hover{
+    background:rgb(218, 218, 218);
+}
+.top_bar button.done:hover{
+    background:rgb(166, 247, 203);
+}

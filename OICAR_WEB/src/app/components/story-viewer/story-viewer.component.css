@@ -1,0 +1,66 @@
+.story-viewer{
+    width: 70vw;
+    height: 40em;
+    background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
+    height: 100%;
+}
+.images{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;align-items: center;
+}
+.images img{
+    width: 17em;
+    height: 17em;
+    margin: 1em;
+}
+.act{
+    height: 100%;
+    width: 2.5em;
+    border-radius: 0.4em;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.act img{
+    width: 1.5em;
+
+}
+.act.next img{
+    transform: rotate(180deg);
+}
+.act:hover{
+    background: #dddddd;
+}
+.act.disabled{
+    pointer-events: none;
+    opacity: 0.2;
+}
+.card .text p{
+    margin-top: 2.5em;
+    font-size: 2em;
+    width: 100%;
+    text-align: center;
+}
+.card .text.bolded p{
+    font-weight: 700;
+}

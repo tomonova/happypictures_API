@@ -1,0 +1,63 @@
+<div class="component_body" style="padding-top: 8em;">
+    <div class="inner" style="display: flex;flex-direction: column; width: 100%; max-width: 1280px;">
+        <h2 style="color: rgb(20, 0, 75); margin-bottom: 0.6em;">Stories</h2>
+        <app-stories-list rows=1 [addable]="true" [stories]="currentMyStories" [startIndex]="currMyIndex" [fullSize]="myStories.length" (newStoryClicked)="makeNewStory()" (backClicked)="back('my')" (nextClicked)="next('my')" (storySelected)="storySelected($event)"></app-stories-list>
+        <div class="maker">
+            <div class="left">
+                <div class="card-list">
+                    <div class="card-holder" *ngFor="let card of currentStory.CARDS;let index=index;">
+                        <img [src]="card.FORMAT.IMAGE1.URL" alt="">
+                        <p>{{card.TEXT}}</p>
+                        <button class="delete-img" (click)="removeCard(index)">+</button>
+                    </div>
+                </div>
+                <app-card-list style="width: 100%; max-width: 1280px;" [addable]="false" (cardClicked)="cardSelected($event)"></app-card-list>
+            </div>
+            <div class="right">
+                <button class="btn save" (click)="saveClick()"  [ngClass]="currentStory.CARDS.length==0?'disabled':''">
+                    <p>SAVE</p>
+                </button>
+                <button class="btn preview" (click)="previewClick()" [ngClass]="currentStory.CARDS.length==0?'disabled':''">
+                    <p>PREVIEW</p>
+                </button>
+                <button class="btn delete" (click)="deleteClick()"  [ngClass]="creatingNew?'disabled':''">
+                    <p>DELETE</p>
+                </button>
+                <mat-checkbox class="example-margin" style="margin-top: 1em; align-self: center;" [ngModel]="currentStory.SHARED==1" (ngModelChange)="sharedChange($event)">Public</mat-checkbox>
+                <div class="tags" style="font-size: 15px; margin-top: 1em;">
+                    <mat-form-field appearance="fill" class="tags-input" style="width: 100%;">
+                        <mat-label>Tags</mat-label>
+                        <input matInput
+                                  cdkAutosizeMinRows="1"
+                                  placeholder="Story tags"
+                                  cdkAutosizeMaxRows="1" [value]="getTags(currentStory.TAGS)" (input)="tagsChanged($event)">
+                    </mat-form-field>
+                </div>
+                <mat-form-field appearance="fill" class="tags-input" style="width: 100%;">
+                    <mat-label>Name</mat-label>
+                    <input matInput
+                              cdkAutosizeMinRows="1"
+                              placeholder="Story name"
+                              cdkAutosizeMaxRows="1" [ngModel]="currentStory.NAME" (input)="nameChanged($event)">
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="tags-input" style="width: 100%;">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="5"
+                              placeholder="Story description"
+                              cdkAutosizeMaxRows="5" [ngModel]="currentStory.DESCRIPTION" (input)="descChanged($event)"></textarea>
+                </mat-form-field>
+                <p style="margin-top: 1em; margin-bottom: 0.5em; align-self: center;">Story image</p>
+                <div class="image-choose" (click)="chooseImage()">
+                    <img id="temp" src="../../../assets/images/img_ico.svg" alt="" *ngIf="!currentStory.IMAGE">
+                    <img [src]="currentStory.IMAGE.URL" alt="" *ngIf="currentStory.IMAGE">
+                </div>
+            </div>
+            <div class="loadingHolder" *ngIf="loading">
+                <div class="lds-ripple"><div></div><div></div></div>
+            </div>
+        </div>
+    </div>
+</div>
