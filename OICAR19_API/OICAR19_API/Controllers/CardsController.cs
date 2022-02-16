@@ -13,8 +13,7 @@ namespace OICAR19_API.Controllers
     [Authorize]
     public class CardsController : ApiController
     {
-        [Authorize]
-        
+       
         /// <summary>
         /// This interface returns all users cards and public(shared) cards
         /// </summary>
@@ -179,6 +178,10 @@ namespace OICAR19_API.Controllers
                 try
                 {
                     CARD oldCard = db.CARDS.Where(c => c.IDCARD == card.IDCARD).FirstOrDefault();
+                    if (oldCard.SHARED==Status.SHARED)
+                    {
+                        return Content(HttpStatusCode.BadRequest, "You cannot edit shared card");
+                    }
                     card.FORMATID = oldCard.FORMATID;
                     oldCard.FORMAT.IDFORMAT = oldCard.FORMAT.IDFORMAT;
                     oldCard.FORMAT.IMG1ID = card.FORMAT.IMAGE?.IDIMAGE;
@@ -228,10 +231,10 @@ namespace OICAR19_API.Controllers
                 try
                 {
                     STORy story = db.STORIES.Where(s => s.IDSTORY == storyId).FirstOrDefault();
-                    if (story==null || story.SHARED==Status.SHARED)
-                    {
-                        return Content(HttpStatusCode.BadRequest, "You can't edit shared story or the story doesn't exist");
-                    }
+                    //if (story==null || story.SHARED==Status.SHARED)
+                    //{
+                    //    return Content(HttpStatusCode.BadRequest, "You can't edit shared story or the story doesn't exist");
+                    //}
                     var cards_story = db.STORY_CARD.Where(sc => sc.STORYID == storyId);
                     db.STORY_CARD.RemoveRange(cards_story);
                     foreach (var item in storyCards)

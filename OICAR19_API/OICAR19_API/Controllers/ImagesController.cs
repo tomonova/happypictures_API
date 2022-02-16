@@ -11,7 +11,6 @@ namespace OICAR19_API.Controllers
     [Authorize]
     public class ImagesController : ApiController
     {
-        [Authorize]
         /// <summary>
         /// This interface returns all public (shared) images
         /// </summary>

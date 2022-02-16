@@ -12,7 +12,6 @@ namespace OICAR19_API.Controllers
     [Authorize]
     public class SearchController : ApiController
     {
-        [Authorize]
         /// <summary>
         /// Search Story by single TAG
         /// </summary>

@@ -515,6 +515,11 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:OICAR19_API.Controllers.CardsController.GetCards(System.Int32)">
+            <summary>
+            This interface returns all users cards and public(shared) cards
+            </summary>
+        </member>
         <member name="M:OICAR19_API.Controllers.CardsController.GetStoryCards(System.Int32)">
             <summary>
             This endpoint will return cards of a story with their respective order in the story.
@@ -549,6 +554,11 @@
             Manage cards of a story
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.ImagesController.GetImages">
+            <summary>
+            This interface returns all public (shared) images
+            </summary>
         </member>
         <member name="M:OICAR19_API.Controllers.ImagesController.GetUserImages(System.Int32)">
             <summary>
@@ -601,6 +611,14 @@
             Delete a schedule
             </summary>
             <param name="idSchedule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OICAR19_API.Controllers.SearchController.SearchStoryByTag(System.String,System.Int32)">
+            <summary>
+            Search Story by single TAG
+            </summary>
+            <param name="tag"></param>
+            <param name="userID"></param>
             <returns></returns>
         </member>
         <member name="M:OICAR19_API.Controllers.SearchController.SearchCardByTag(System.String,System.Int32)">

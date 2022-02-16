@@ -149,6 +149,13 @@ namespace OICAR19_API.Controllers
                     }
                     db.STORIES.Add(story);
                     db.SaveChanges();
+                    if (story.SHARED == Status.SHARED)
+                    {
+                        SqlParameter profileID = new SqlParameter("@profileID", userID);
+                        SqlParameter storyID = new SqlParameter("@storyID", story.IDSTORY);
+                        SqlParameter admin = new SqlParameter("admin", Status.ADMIN_ACCOUNT);
+                        db.Database.ExecuteSqlCommand("exec ShareStory @profileID, @storyID,@admin", profileID, storyID, admin);
+                    }
                 }
                 catch (Exception ex)
                 {
